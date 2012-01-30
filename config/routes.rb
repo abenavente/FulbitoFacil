@@ -1,4 +1,6 @@
 FulbitoFacil::Application.routes.draw do
+  resources :generes
+
   resources :identity_card_types
 
   resources :id_types
