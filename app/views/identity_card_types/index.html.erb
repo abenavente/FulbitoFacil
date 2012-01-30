@@ -1,0 +1,23 @@
+<h1>Listing identity_card_types</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @identity_card_types.each do |identity_card_type| %>
+  <tr>
+    <td><%= identity_card_type.name %></td>
+    <td><%= link_to 'Show', identity_card_type %></td>
+    <td><%= link_to 'Edit', edit_identity_card_type_path(identity_card_type) %></td>
+    <td><%= link_to 'Destroy', identity_card_type, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Identity card type', new_identity_card_type_path %>
