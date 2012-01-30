@@ -1,4 +1,6 @@
 FulbitoFacil::Application.routes.draw do
+  resources :id_types
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
