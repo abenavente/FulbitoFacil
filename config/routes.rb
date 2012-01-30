@@ -1,4 +1,6 @@
 FulbitoFacil::Application.routes.draw do
+  resources :identity_card_types
+
   resources :id_types
 
   # The priority is based upon order of creation:
