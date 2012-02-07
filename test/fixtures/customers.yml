@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  lastname: MyString
+  genere: 
+  identity_card_type: 
+  number_identity_card: MyString
+  address: MyString
+  distrito: 
+  email: MyString
+  password: MyString
+  birthday: 2012-02-07
+  phone: MyString
+
+two:
+  name: MyString
+  lastname: MyString
+  genere: 
+  identity_card_type: 
+  number_identity_card: MyString
+  address: MyString
+  distrito: 
+  email: MyString
+  password: MyString
+  birthday: 2012-02-07
+  phone: MyString

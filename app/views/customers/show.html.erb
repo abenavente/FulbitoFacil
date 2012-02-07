@@ -1,0 +1,60 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @customer.name %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @customer.lastname %>
+</p>
+
+<p>
+  <b>Genere:</b>
+  <%= @customer.genere %>
+</p>
+
+<p>
+  <b>Identity card type:</b>
+  <%= @customer.identity_card_type %>
+</p>
+
+<p>
+  <b>Number identity card:</b>
+  <%= @customer.number_identity_card %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @customer.address %>
+</p>
+
+<p>
+  <b>Distrito:</b>
+  <%= @customer.distrito %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @customer.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @customer.password %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @customer.birthday %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @customer.phone %>
+</p>
+
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>
