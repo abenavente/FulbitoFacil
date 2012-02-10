@@ -331,15 +331,18 @@ text-align: left;
     position:relative;
 }
 .monitor:before { /* shadow */
-    box-shadow: 0 360px 10px rgba(0,0,0,0.2);
-    border-radius:50%;
-    content: "#";
-    display: block;
-    height: 20px;
-    left: 30px;
-    position: absolute;
-    text-indent: -9999px;
-    width: 540px;
+    box-shadow: 0 91px 5px rgba(0,0,0,0.2);
+border-radius: 50%;
+content: "#";
+display: block;
+height: 6px;
+left: -0.7px;
+position: absolute;
+text-indent: -9999px;
+width: 215px;
+
+
+
 }
 .monitor:after { /* shine */
     background: -ms-linear-gradient(top left, rgba(255,255,255,0) 60%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0) 100%);
@@ -347,14 +350,14 @@ text-align: left;
     background: -o-linear-gradient(top left, rgba(255,255,255,0) 60%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0) 100%);
     background: -webkit-linear-gradient(top left, rgba(255,255,255,0) 60%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0) 100%);
     background: linear-gradient(top left, rgba(255,255,255,0) 60%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0) 100%);
-    border-radius:20px 20px 0 0;
-    height: 364px;
-    content: "#";
-    display: block;
-    position: absolute;
-    right: -30px;
-    text-indent: -9999px;
-    top:-30px;
-    width:600px;
-    z-index: 10;
+  border-radius: 20px 20px 0 0;
+height: 70px;
+content: "#";
+display: block;
+position: absolute;
+right: -0.7px;
+text-indent: -9999px;
+top: 0.9px;
+width: 279px;
+z-index: 10;
 }
