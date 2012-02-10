@@ -1,14 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html  class="no-js" lang="es">
 <head>
-  <title>FulbitoFacil</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <title>Auth</title>
+  <meta charset="utf-8">
+
+  <%= stylesheet_link_tag "estilos" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
 </head>
+<header>
+
+		<p id="tituloWeb" >FulbitoFacil</p>
+		<section id="menuPrincipal">
+		<nav id="navPrincipal">
+			<ul >
+				<li><%= link_to "Log in", log_in_path %></li>
+			 	<li><a href="ourcompany.html">Locales</a></li>
+			 	<li><a href="policies.html">Canchas</a></li>
+			 	<li><a href="doc_repository.html">Jugadores</a></li>
+			 </ul>
+		</nav>
+		</section>
+		<section id="botonesLogin">
+		<nav id="user_nav">
+		 <% if current_customer %> Logged in as <%= current_customer.email %>
+    	<%= link_to "Log out", log_out_path %>
+  			<% else %>
+    	<%= link_to "Sign up", sign_up_path %> or 
+    	<%= link_to "Log in", log_in_path %>
+  		<% end %>
+		</nav>
+		</section>
+</header>
 <body>
 
-<%= yield %>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, :id => "flash#{name}" %>
+  <% end %>
 
+
+<%= yield %>
 </body>
+
+<footer>
+		<section id ="contenedorFooter">
+			<p id="derechosReservados">
+				Copyright ©2012 Nemesis Corporation. Todos los derechos reservados
+			</p>
+		</section>
+	</footer>
 </html>

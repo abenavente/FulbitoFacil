@@ -1,0 +1,36 @@
+
+
+
+
+<section id="contenedorCentral">
+			<section id="contenedor1">
+				<article>
+					
+						<h3>Ingresa a la red mas grande de jugadores y canchitas</h3>
+						<%= form_tag log_in_path do %>
+  <p>
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email, params[:email] %>
+  </p>
+  <p>
+    <%= label_tag :password %><br />
+    <%= password_field_tag :password %>
+  </p>
+  <p class="button"><%= submit_tag %></p>
+<% end %>
+
+						<p>
+						<nav id="navLogin">
+						<ul>
+						<li><a href="index">Regístrate</a></li>
+						<li><a href="index">¿Olvidaste tu contraseña?</a></li>
+						</ul>
+						</nav>
+						</p>
+					
+				</article>
+			</section>			
+			<section id="contenedor2">				
+			</section>			
+		</section>
+

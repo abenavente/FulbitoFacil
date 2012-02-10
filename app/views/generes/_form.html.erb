@@ -1,4 +1,6 @@
+<section id="contenedorBasico">
 <%= form_for(@genere) do |f| %>
+
   <% if @genere.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@genere.errors.count, "error") %> prohibited this genere from being saved:</h2>
@@ -19,3 +21,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+</section>

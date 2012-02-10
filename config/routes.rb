@@ -1,4 +1,17 @@
-FulbitoFacil::Application.routes.draw do
+FulbitoFacil::Application.routes.draw do 
+  
+  
+#  get "log_in" => "session#create", :as => "log_in"
+ # get "log_out" => "sessions#destroy", :as => "log_out"
+  match "log_in" => "session#create" #, :as => "log_in"
+  match "log_out" => "session#destroy"
+
+  get "sign_up" => "customers#new", :as => "sign_up"
+  root :to => "session#new"
+
+
+  resources :sessions
+
   resources :customers
 
   resources :distritos
@@ -10,6 +23,8 @@ FulbitoFacil::Application.routes.draw do
   resources :identity_card_types
 
   resources :id_types
+
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
