@@ -1,0 +1,21 @@
+<%= simple_form_for(@comment) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.input :rating %>
+
+    <%= f.input :comment %>
+
+    <%= f.input :customers_id %>
+
+    <%= f.input :references %>
+
+    <%= f.input :customers %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

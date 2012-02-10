@@ -1,4 +1,6 @@
 FulbitoFacil::Application.routes.draw do
+  resources :comments
+
   resources :customers
 
   resources :distritos
