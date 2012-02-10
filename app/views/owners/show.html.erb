@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @owner.name %>
+</p>
+
+<p>
+  <b>Lastname:</b>
+  <%= @owner.lastname %>
+</p>
+
+<p>
+  <b>Genere:</b>
+  <%= @owner.genere.name.to_s %>
+</p>
+
+<p>
+  <b>Identity card type:</b>
+  <%= @owner.identity_card_type.name.to_s %>
+</p>
+
+<p>
+  <b>Number identity card:</b>
+  <%= @owner.number_identity_card %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @owner.email %>
+</p>
+
+<p>
+  <b>Password:</b>
+  <%= @owner.password %>
+</p>
+
+<p>
+  <b>Birthday:</b>
+  <%= @owner.birthday %>
+</p>
+
+
+<%= link_to 'Edit', edit_owner_path(@owner) %> |
+<%= link_to 'Back', owners_path %>
