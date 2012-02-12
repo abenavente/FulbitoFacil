@@ -1,7 +1,7 @@
 body
 {
 
-	background: #E8E8E8;
+	background: #86C9EF ;
 	color:white;
 	font-family: Helvetica, Arial;
 	font-size: 16px;
@@ -16,7 +16,7 @@ footer
 	width:100%;
     background-color:#999;
     height:70px;
-
+    bottom: 0px;
 }
 form {
 	width: 280px;
@@ -27,10 +27,10 @@ header
 {
 	-moz-box-shadow: 0 40px 40px -40px #ccc;
 	-webkit-box-shadow: 0 0 40px #ccc;
-	background-color: #1f211b;
-	background: -moz-linear-gradient(top, gray , #2c2c2c);
-	background: -webkit-gradient(linear, 0 0,  0 100%, from(gray),  to(#2c2c2c));
-	border-bottom: 20px solid #00A701;
+	background-color: #172322;
+	background: -moz-linear-gradient(top, gray , #172322);
+	background: -webkit-gradient(linear, 0 0,  0 100%, from(gray),  to(#172322));
+	border-bottom: 20px solid #9FC54E;
 	box-shadow: 0 0 40px #ccc;
 	display: block; 
 	height: 50px;
@@ -109,7 +109,7 @@ nav ul li a{
 }
 nav ul li a:hover {
     
-    background-color: #00A701;
+    background-color: #9FC54E;
 }
 
 #contenedorBasico{
@@ -119,17 +119,18 @@ nav ul li a:hover {
 	border: 10px solid white;
 	margin: 0 auto;
 	margin-top: 50px;	
-	width: 800px;	
+	width: 850px;	
 	position: relative;
 }
 #contenedorCentral
 {
 	background:white;
 	border: 10px solid white;
+    border-radius:10px;
 	height: 350px;
 	margin: 0 auto;
 	margin-top: 50px;	
-	width: 800px;	
+	width: 826px;	
 	position: relative;
 }
 
@@ -137,12 +138,12 @@ nav ul li a:hover {
 {
 
 	background-image:  url(imagenes/futbol.png);
-	
 	display: inline-block;
-	height:100%;
-	
+	height:91%;  
+    margin-top: 12px;   
+	left:10px;
 	right:0px;
-	width: 59%;
+	width: 472px;
 	vertical-align: top;		
 }
 
@@ -150,12 +151,13 @@ nav ul li a:hover {
 {
 	background: #1f211b;
 	
+    margin-left: 12px;   
+    margin-top: 12px;
 	display: inline-block;
-	height:100%;
-	margin: 0 auto;
-	padding: 0 auto;
+	height:91%;
+    left:10px;
 	vertical-align: top;
-	width: 40.56%;
+	width: 324.48px;
 }
 
 #contenedor2 article
@@ -234,7 +236,7 @@ text-align: left;
 
 
 #designmodo .canvas {
-    background: green;
+    background: #8AAC42;
 	border-radius:60px;
 	text-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
 }
