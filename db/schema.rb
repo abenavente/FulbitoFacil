@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120208124511) do
+ActiveRecord::Schema.define(:version => 20120213014249) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,36 @@ ActiveRecord::Schema.define(:version => 20120208124511) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "sportsfields", :force => true do |t|
+    t.string   "Nombre"
+    t.string   "Local"
+    t.text     "Caracteristicas"
+    t.boolean  "Lunes"
+    t.boolean  "Martes"
+    t.boolean  "Miercoles"
+    t.boolean  "Jueves"
+    t.boolean  "Viernes"
+    t.boolean  "Sabado"
+    t.boolean  "Domingo"
+    t.time     "Lun_hora_inicio"
+    t.time     "Lun_hora_Fin"
+    t.time     "Mar_hora_inicio"
+    t.time     "Mar_hora_Fin"
+    t.time     "Mie_hora_inicio"
+    t.time     "Mie_hora_Fin"
+    t.time     "Jue_hora_inicio"
+    t.time     "Jue_hora_Fin"
+    t.time     "Vie_hora_inicio"
+    t.time     "Vie_hora_Fin"
+    t.time     "Sab_hora_inicio"
+    t.time     "Sab_hora_Fin"
+    t.time     "Dom_hora_inicio"
+    t.time     "Dom_hora_Fin"
+    t.string   "imagen"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

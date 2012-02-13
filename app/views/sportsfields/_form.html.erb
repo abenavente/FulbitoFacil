@@ -1,0 +1,61 @@
+<%= simple_form_for(@sportsfield) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.input :name %>
+
+    <%= f.input :local %>
+
+    <%= f.input :feature %>
+
+    <%= f.input :monday %>
+
+    <%= f.input :tuesday %>
+
+    <%= f.input :wednesday %>
+
+    <%= f.input :thursday %>
+
+    <%= f.input :friday %>
+
+    <%= f.input :saturday %>
+
+    <%= f.input :sunday %>
+
+    <%= f.input :mon_time_start %>
+
+    <%= f.input :mon_time_end %>
+
+    <%= f.input :tue_time_start %>
+
+    <%= f.input :tue_time_end %>
+
+    <%= f.input :wed_time_start %>
+
+    <%= f.input :wed_time_end %>
+
+    <%= f.input :thu_time_start %>
+
+    <%= f.input :thu_time_end %>
+
+    <%= f.input :fri_time_start %>
+
+    <%= f.input :fri_time_end %>
+
+    <%= f.input :sat_time_start %>
+
+    <%= f.input :sat_time_end %>
+
+    <%= f.input :sun_time_start %>
+
+    <%= f.input :sun_time_end %>
+
+    <%= f.input :imagen %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

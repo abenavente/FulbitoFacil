@@ -1,0 +1,71 @@
+<h1>Listing sportsfields</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Local</th>
+    <th>Feature</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+    <th>Sunday</th>
+    <th>Mon time start</th>
+    <th>Mon time end</th>
+    <th>Tue time start</th>
+    <th>Tue time end</th>
+    <th>Wed time start</th>
+    <th>Wed time end</th>
+    <th>Thu time start</th>
+    <th>Thu time end</th>
+    <th>Fri time start</th>
+    <th>Fri time end</th>
+    <th>Sat time start</th>
+    <th>Sat time end</th>
+    <th>Sun time start</th>
+    <th>Sun time end</th>
+    <th>Imagen</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sportsfields.each do |sportsfield| %>
+  <tr>
+    <td><%= sportsfield.name %></td>
+    <td><%= sportsfield.local %></td>
+    <td><%= sportsfield.feature %></td>
+    <td><%= sportsfield.monday %></td>
+    <td><%= sportsfield.tuesday %></td>
+    <td><%= sportsfield.wednesday %></td>
+    <td><%= sportsfield.thursday %></td>
+    <td><%= sportsfield.friday %></td>
+    <td><%= sportsfield.saturday %></td>
+    <td><%= sportsfield.sunday %></td>
+    <td><%= sportsfield.mon_time_start %></td>
+    <td><%= sportsfield.mon_time_end %></td>
+    <td><%= sportsfield.tue_time_start %></td>
+    <td><%= sportsfield.tue_time_end %></td>
+    <td><%= sportsfield.wed_time_start %></td>
+    <td><%= sportsfield.wed_time_end %></td>
+    <td><%= sportsfield.thu_time_start %></td>
+    <td><%= sportsfield.thu_time_end %></td>
+    <td><%= sportsfield.fri_time_start %></td>
+    <td><%= sportsfield.fri_time_end %></td>
+    <td><%= sportsfield.sat_time_start %></td>
+    <td><%= sportsfield.sat_time_end %></td>
+    <td><%= sportsfield.sun_time_start %></td>
+    <td><%= sportsfield.sun_time_end %></td>
+    <td><%= sportsfield.imagen %></td>
+    <td><%= link_to 'Show', sportsfield %></td>
+    <td><%= link_to 'Edit', edit_sportsfield_path(sportsfield) %></td>
+    <td><%= link_to 'Destroy', sportsfield, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sportsfield', new_sportsfield_path %>

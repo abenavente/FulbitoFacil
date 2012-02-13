@@ -1,6 +1,8 @@
 FulbitoFacil::Application.routes.draw do 
   
   
+  resources :sportsfields
+
 #  get "log_in" => "session#create", :as => "log_in"
  # get "log_out" => "sessions#destroy", :as => "log_out"
   match "log_in" => "session#create" #, :as => "log_in"
