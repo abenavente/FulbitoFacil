@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 FulbitoFacil::Application.routes.draw do 
   
   
@@ -15,6 +16,14 @@ FulbitoFacil::Application.routes.draw do
   resources :customers
 
   resources :distritos
+=======
+FulbitoFacil::Application.routes.draw do
+  resources :locals
+
+  resources :districts
+
+  resources :owners
+>>>>>>> ValidacionesCreacionRegistroDueno
 
   resources :identity_card_types
 

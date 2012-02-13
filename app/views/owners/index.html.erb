@@ -1,0 +1,37 @@
+<h1>Lista de Duenos de Canchitas de Fulbito</h1>
+
+<table border="1">
+  <tr>
+    <th>Nombres</th>
+    <th>Apellidos</th>
+    <th>Genero</th>
+    <th>Tipo de Documento de Identidad</th>
+    <th>Numero de Documento de Identidad</th>
+    <th>Correo Electronico</th>
+    <th>Password</th>
+    <th>Fecha de Nacimiento</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @owners.each do |owner| %>
+  <tr>
+    <td><%= owner.name %></td>
+    <td><%= owner.lastname %></td>
+    <td><%= owner.genere.name.to_s %></td>
+    <td><%= owner.identity_card_type.name.to_s %></td>
+    <td><%= owner.number_identity_card %></td>
+    <td><%= owner.email %></td>
+    <td><%= owner.password %></td>
+    <td><%= owner.birthday %></td>
+    <td><%= link_to 'Show', owner %></td>
+    <td><%= link_to 'Edit', edit_owner_path(owner) %></td>
+    <td><%= link_to 'Destroy', owner, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Owner', new_owner_path %>

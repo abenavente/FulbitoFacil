@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @local.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @local.address %>
+</p>
+
+<p>
+  <b>District:</b>
+  <%= @local.district %>
+</p>
+
+<p>
+  <b>Google maps address:</b>
+  <%= @local.google_maps_address %>
+</p>
+
+<p>
+  <b>Phone:</b>
+  <%= @local.phone %>
+</p>
+
+
+<%= link_to 'Edit', edit_local_path(@local) %> |
+<%= link_to 'Back', locals_path %>
