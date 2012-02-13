@@ -1,4 +1,8 @@
 FulbitoFacil::Application.routes.draw do
+  resources :locals
+
+  resources :districts
+
   resources :owners
 
   resources :identity_card_types
