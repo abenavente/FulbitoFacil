@@ -1,0 +1,49 @@
+<section id="contenedorBasico">
+<h1>Tarifas</h1>
+
+<table border="1">
+  <tr>
+    <th>Hora Inicio</th>
+    <th>Hora Fin</th>
+    <th>Precio</th>
+    <th>Promocion</th>
+    <th>Fecha Inicio</th>
+    <th>Fecha Fin</th>
+    <th>Lun</th>
+    <th>Mar</th>
+    <th>Mie</th>
+    <th>Jue</th>
+    <th>Vie</th>
+    <th>Sab</th>
+    <th>Dom</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @rates.each do |rate| %>
+  <tr>
+    <td><%= rate.start_time %></td>
+    <td><%= rate.end_time %></td>
+    <td><%= rate.price %></td>
+    <td><%= rate.promocio %></td>
+    <td><%= rate.start_date %></td>
+    <td><%= rate.end_date %></td>
+    <td><%= rate.monday %></td>
+    <td><%= rate.tuesday %></td>
+    <td><%= rate.wednesday %></td>
+    <td><%= rate.thursday %></td>
+    <td><%= rate.friday %></td>
+    <td><%= rate.saturday %></td>
+    <td><%= rate.sunday %></td>
+    <td><%= link_to 'Show', rate %></td>
+    <td><%= link_to 'Edit', edit_rate_path(rate) %></td>
+    <td><%= link_to 'Destroy', rate, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva Tarifa', new_rate_path %>
+<section>

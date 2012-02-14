@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120214002108) do
+ActiveRecord::Schema.define(:version => 20120214144557) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -88,5 +88,53 @@ ActiveRecord::Schema.define(:version => 20120214002108) do
 
   add_index "owners", ["genere_id"], :name => "index_owners_on_genere_id"
   add_index "owners", ["identity_card_type_id"], :name => "index_owners_on_identity_card_type_id"
+
+  create_table "rates", :force => true do |t|
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "price"
+    t.boolean  "promocio"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "sportsfields", :force => true do |t|
+    t.string   "name"
+    t.string   "local"
+    t.text     "feature"
+    t.boolean  "monday"
+    t.boolean  "tuesday"
+    t.boolean  "wednesday"
+    t.boolean  "thursday"
+    t.boolean  "friday"
+    t.boolean  "saturday"
+    t.boolean  "sunday"
+    t.time     "mon_start_time"
+    t.time     "mon_end_time"
+    t.time     "tue_start_time"
+    t.time     "tue_end_time"
+    t.time     "wed_start_time"
+    t.time     "wed_end_time"
+    t.time     "thu_start_time"
+    t.time     "thu_end_time"
+    t.time     "fri_start_time"
+    t.time     "fri_end_time"
+    t.time     "sat_start_time"
+    t.time     "sat_end_time"
+    t.time     "sun_start_time"
+    t.time     "sun_end_start"
+    t.string   "imagen"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
 
 end

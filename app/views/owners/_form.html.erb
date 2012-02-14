@@ -3,7 +3,7 @@
     <div id="error_explanation">
       <h2><%= pluralize(@owner.errors.count, "error") %> prohibited this owner from being saved:</h2>
 
-      <ul>
+	       <ul>
       <% if(@owner).errors.any? %>
 	<% @owner.errors.full_messages.each do |msg| %>
 		<li><%= msg %></li>

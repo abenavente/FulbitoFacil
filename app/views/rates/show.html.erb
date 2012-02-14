@@ -1,0 +1,70 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Start time:</b>
+  <%= @rate.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @rate.end_time %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @rate.price %>
+</p>
+
+<p>
+  <b>Promocio:</b>
+  <%= @rate.promocio %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @rate.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @rate.end_date %>
+</p>
+
+<p>
+  <b>Monday:</b>
+  <%= @rate.monday %>
+</p>
+
+<p>
+  <b>Tuesday:</b>
+  <%= @rate.tuesday %>
+</p>
+
+<p>
+  <b>Wednesday:</b>
+  <%= @rate.wednesday %>
+</p>
+
+<p>
+  <b>Thursday:</b>
+  <%= @rate.thursday %>
+</p>
+
+<p>
+  <b>Friday:</b>
+  <%= @rate.friday %>
+</p>
+
+<p>
+  <b>Saturday:</b>
+  <%= @rate.saturday %>
+</p>
+
+<p>
+  <b>Sunday:</b>
+  <%= @rate.sunday %>
+</p>
+
+
+<%= link_to 'Modificar', edit_rate_path(@rate) %> |
+<%= link_to 'Retornar', rates_path %>

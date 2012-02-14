@@ -1,0 +1,37 @@
+<%= simple_form_for(@rate) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.input :start_time,:label=> "Hora Inicio : "%>
+
+    <%= f.input :end_time,:label=> "Hora Fin : " %>
+
+    <%= f.input :price,:label=> "Precio : " %>
+
+    <%= f.input :promocio,:label=> "Promocion" %>
+
+    <%= f.input :start_date,:label=> "Fecha Inicio:" %>
+
+    <%= f.input :end_date,:label=> "Fecha Fin:" %>
+
+    <%= f.input :monday,:label=> "Lunes" %>
+
+    <%= f.input :tuesday,:label=> "Martes" %>
+
+    <%= f.input :wednesday,:label=> "Miercoles" %>
+
+    <%= f.input :thursday,:label=> "Jueves" %>
+
+    <%= f.input :friday,:label=> "Viernes" %>
+
+    <%= f.input :saturday,:label=> "Sabado" %>
+
+    <%= f.input :sunday,:label=> "Domingo" %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  start_time: 2012-02-14 09:45:57
+  end_time: 2012-02-14 09:45:57
+  price: 1
+  promocio: false
+  start_date: 2012-02-14
+  end_date: 2012-02-14
+  monday: false
+  tuesday: false
+  wednesday: false
+  thursday: false
+  friday: false
+  saturday: false
+  sunday: false
+
+two:
+  start_time: 2012-02-14 09:45:57
+  end_time: 2012-02-14 09:45:57
+  price: 1
+  promocio: false
+  start_date: 2012-02-14
+  end_date: 2012-02-14
+  monday: false
+  tuesday: false
+  wednesday: false
+  thursday: false
+  friday: false
+  saturday: false
+  sunday: false
