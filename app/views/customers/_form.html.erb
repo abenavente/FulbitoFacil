@@ -13,22 +13,21 @@
   <% end %>
 
   
-    <%= f.input :name , => 'Nombre' %><br />
-  
-    <%= f.input :lastname %><br />
-    <%= f.association :genere %><br />
-    <%= f.association :identity_card_type %><br />
-    <%= f.input :number_identity_card %><br />
-    <%= f.input :address %>
-    <%= f.association :distrito %><br />
-    <%= f.input :email %>
-    <%= f.input :email_confirmation %>
+    <%= f.input :name, :label=> "Nombres : " %><br /> 
+    <%= f.input :lastname, :label=>"Apellidos : "%><br />
+    <%= f.association :genere, :label=>"Genero : "%><br />
+    <%= f.association :identity_card_type, :label=> "Tipo de Documento : " %><br />
+    <%= f.input :number_identity_card, :label=> "Numero de Documento : " %><br />
+    <%= f.input :address, :label=> "Direccion : " %>
+    <%= f.association :district, :label=> "Distrito : " %><br />
+    <%= f.input :email, :label=> "Correo Electronico : " %>
+    <%= f.input :email_confirmation, :label=> "Confirmar Correo Electronico : " %>
     
-    <%= f.input :password %><br />
-    <%= f.input :password_confirmation %><br />
-    <%= f.input :birthday %>
-    <%= f.input :phone %><br />
-    <%= f.button :submit %>
+    <%= f.input :password, :label=> "Password : "  %><br />
+    <%= f.input :password_confirmation, :label=> "Confirmar Password : "  %><br />
+    <%= f.input :birthday, :label => "Fecha de Nacimiento : " %>
+    <%= f.input :phone, :label => "Telefono : " %><br />
+    <%= f.submit 'Crear Cliente' %>
   
 <% end %>
 </section>

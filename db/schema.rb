@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120208124511) do
+ActiveRecord::Schema.define(:version => 20120214002108) do
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -21,7 +20,6 @@ ActiveRecord::Schema.define(:version => 20120208124511) do
     t.integer  "identity_card_type_id"
     t.string   "number_identity_card"
     t.string   "address"
-    t.integer  "distrito_id"
     t.string   "email"
     t.string   "password"
     t.date     "birthday"
@@ -30,18 +28,20 @@ ActiveRecord::Schema.define(:version => 20120208124511) do
     t.datetime "updated_at",            :null => false
     t.string   "password_confirmation"
     t.string   "email_confirmation"
+    t.integer  "district_id"
   end
 
-  add_index "customers", ["distrito_id"], :name => "index_customers_on_distrito_id"
+  add_index "customers", ["district_id"], :name => "index_customers_on_district_id"
   add_index "customers", ["genere_id"], :name => "index_customers_on_genere_id"
   add_index "customers", ["identity_card_type_id"], :name => "index_customers_on_identity_card_type_id"
 
-  create_table "distritos", :force => true do |t|
-=======
-ActiveRecord::Schema.define(:version => 20120210035908) do
-
   create_table "districts", :force => true do |t|
->>>>>>> ValidacionesCreacionRegistroDueno
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "distritos", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -59,8 +59,6 @@ ActiveRecord::Schema.define(:version => 20120210035908) do
     t.datetime "updated_at", :null => false
   end
 
-<<<<<<< HEAD
-=======
   create_table "locals", :force => true do |t|
     t.string   "name"
     t.string   "address"
@@ -91,5 +89,4 @@ ActiveRecord::Schema.define(:version => 20120210035908) do
   add_index "owners", ["genere_id"], :name => "index_owners_on_genere_id"
   add_index "owners", ["identity_card_type_id"], :name => "index_owners_on_identity_card_type_id"
 
->>>>>>> ValidacionesCreacionRegistroDueno
 end

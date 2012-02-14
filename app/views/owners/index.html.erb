@@ -1,3 +1,4 @@
+<section id="contenedorBasico">
 <h1>Lista de Duenos de Canchitas de Fulbito</h1>
 
 <table border="1">
@@ -10,9 +11,6 @@
     <th>Correo Electronico</th>
     <th>Password</th>
     <th>Fecha de Nacimiento</th>
-    <th></th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @owners.each do |owner| %>
@@ -34,4 +32,5 @@
 
 <br />
 
-<%= link_to 'New Owner', new_owner_path %>
+<%= link_to 'Nuevo Dueno de Canchitas de Fulbito', new_owner_path %>
+</section>

@@ -13,37 +13,16 @@
     </div>
   <% end %>
 
-  <div class="field">
+
     <%= f.input :name,:label=> "Nombres : "  %>
-  </div>
-  <div class="field">
     <%= f.input :lastname,:label=>"Apellidos : " %>
-  </div>
-  <div class="field">
     <%= f.association:genere, :label=> "Genero : ", :as => :radio %>
-  </div>
-  <div class="field">
     <%= f.association :identity_card_type, :label=> "Tipo de Documento : " %>
-  </div>
-  <div class="field">
     <%= f.input :number_identity_card, :label=> "Numero de Documento : " %>
-  </div>
-  <div class="field">
     <%= f.input :email, :label=> "Correo Electronico : "%>
-  </div>
-  <div class="field">
     <%= f.input :email_confirmation, :label=> "Confirmar Correo Electronico : "%>
-  </div>
-  <div class="field">
     <%= f.input :password, :label=> "Password : " %>
-  </div>
-   <div class="field">
     <%= f.input :password_confirmation, :label=> "Confirmar Password : " %>
-  </div>
-  <div class="field">
     <%= f.input :birthday, :label => "Fecha de Nacimiento : "  %>
-  </div>
-  <div class="actions">
     <%= f.submit 'Crear Dueno'  %>
-  </div>
 <% end %>

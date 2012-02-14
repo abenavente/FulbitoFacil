@@ -1,7 +1,7 @@
 class Customer < ActiveRecord::Base
   belongs_to :genere
   belongs_to :identity_card_type
-  belongs_to :distrito
+  belongs_to :district
   
   validates_presence_of :name, :lastname, :email, :password  	
   validates_uniqueness_of :email

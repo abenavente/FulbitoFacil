@@ -1,9 +1,7 @@
-<<<<<<< HEAD
-FulbitoFacil::Application.routes.draw do 
-  
-  
+
+FulbitoFacil::Application.routes.draw do    
 #  get "log_in" => "session#create", :as => "log_in"
- # get "log_out" => "sessions#destroy", :as => "log_out"
+# get "log_out" => "sessions#destroy", :as => "log_out"
   match "log_in" => "session#create" #, :as => "log_in"
   match "log_out" => "session#destroy"
 
@@ -15,15 +13,12 @@ FulbitoFacil::Application.routes.draw do
 
   resources :customers
 
-  resources :distritos
-=======
-FulbitoFacil::Application.routes.draw do
   resources :locals
 
   resources :districts
 
   resources :owners
->>>>>>> ValidacionesCreacionRegistroDueno
+
 
   resources :identity_card_types
 
