@@ -7,7 +7,7 @@ class CreateCustomers < ActiveRecord::Migration
       t.references :identity_card_type
       t.string :number_identity_card
       t.string :address
-      t.references :distrito
+      t.references :district
       t.string :email
       t.string :password
       t.date :birthday
@@ -17,6 +17,6 @@ class CreateCustomers < ActiveRecord::Migration
     end
     add_index :customers, :genere_id
     add_index :customers, :identity_card_type_id
-    add_index :customers, :distrito_id
+    add_index :customers, :district_id
   end
 end
