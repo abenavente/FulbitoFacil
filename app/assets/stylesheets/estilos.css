@@ -11,12 +11,15 @@ body
 footer
 {
 
+   
+
 	float: left;
 	position: fixed;
+    left:0;
+    bottom:0;
 	width:100%;
     background-color:#999;
     height:70px;
-    bottom: 0px;
 }
 form {
 	width: 280px;
@@ -121,6 +124,9 @@ nav ul li a:hover {
 	margin-top: 50px;	
 	width: 850px;	
 	position: relative;
+
+
+
 }
 #contenedorCentral
 {
@@ -219,6 +225,10 @@ margin: 3px auto;
 
 position: absolute;
 text-align: left;
+}
+#espacioInferior
+{
+    height: 90px;
 }
 #navLogin
 {
