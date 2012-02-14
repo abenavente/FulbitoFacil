@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  local: MyString
+  feature: MyText
+  monday: false
+  tuesday: false
+  wednesday: false
+  thursday: false
+  friday: false
+  saturday: false
+  sunday: false
+  mon_start_time: 2012-02-14 09:39:48
+  mon_end_time: 2012-02-14 09:39:48
+  tue_start_time: 2012-02-14 09:39:48
+  tue_end_time: 2012-02-14 09:39:48
+  wed_start_time: 2012-02-14 09:39:48
+  wed_end_time: 2012-02-14 09:39:48
+  thu_start_time: 2012-02-14 09:39:48
+  thu_end_time: 2012-02-14 09:39:48
+  fri_start_time: 2012-02-14 09:39:48
+  fri_end_time: 2012-02-14 09:39:48
+  sat_start_time: 2012-02-14 09:39:48
+  sat_end_time: 2012-02-14 09:39:48
+  sun_start_time: 2012-02-14 09:39:48
+  sun_end_start: 2012-02-14 09:39:48
+  imagen: MyString
+
+two:
+  name: MyString
+  local: MyString
+  feature: MyText
+  monday: false
+  tuesday: false
+  wednesday: false
+  thursday: false
+  friday: false
+  saturday: false
+  sunday: false
+  mon_start_time: 2012-02-14 09:39:48
+  mon_end_time: 2012-02-14 09:39:48
+  tue_start_time: 2012-02-14 09:39:48
+  tue_end_time: 2012-02-14 09:39:48
+  wed_start_time: 2012-02-14 09:39:48
+  wed_end_time: 2012-02-14 09:39:48
+  thu_start_time: 2012-02-14 09:39:48
+  thu_end_time: 2012-02-14 09:39:48
+  fri_start_time: 2012-02-14 09:39:48
+  fri_end_time: 2012-02-14 09:39:48
+  sat_start_time: 2012-02-14 09:39:48
+  sat_end_time: 2012-02-14 09:39:48
+  sun_start_time: 2012-02-14 09:39:48
+  sun_end_start: 2012-02-14 09:39:48
+  imagen: MyString

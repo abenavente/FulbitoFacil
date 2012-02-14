@@ -1,0 +1,133 @@
+<section id="contenedorBasico">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nombre:</b>
+  <%= @sportsfield.name %>
+</p>
+
+<p>
+  <b>Local:</b>
+  <%= @sportsfield.local %>
+</p>
+
+<p>
+  <b>Caracteristica:</b>
+  <%= @sportsfield.feature %>
+</p>
+
+<td>
+  <b>Lunes:</b>
+  <%= @sportsfield.monday %>
+</td>
+
+<td>
+  <b>Inicio:</b>
+  <%= @sportsfield.mon_start_time %>
+</td>
+
+<td>
+  <b>Fin:</b>
+  <%= @sportsfield.mon_end_time %>
+</td>
+<p>
+<td>
+  <b>Martes:</b>
+  <%= @sportsfield.tuesday %>
+</td>
+
+<td>
+  <b>Inicio: </b>
+  <%= @sportsfield.tue_start_time %>
+</td>
+
+<td>
+ <b>Fin:</b>
+  <%= @sportsfield.tue_end_time %>
+</td>
+</p>
+<p>
+<td>
+  <b>Miercoles:</b>
+  <%= @sportsfield.wednesday %>
+</td>
+<td>
+  <b>Inicio:</b>
+  <%= @sportsfield.wed_start_time %>
+</td>
+<td>
+  <b>Fin:</b>
+  <%= @sportsfield.wed_end_time %>
+</td>
+</p>
+<p>
+<td>
+  <b>Jueves:</b>
+  <%= @sportsfield.thursday %>
+</td>
+<td>
+  <b>Inicio:</b>
+  <%= @sportsfield.thu_start_time %>
+</td>
+<td>
+  <b>Fin:</b>
+  <%= @sportsfield.thu_end_time %>
+</td>
+</p>
+<p>
+  <td>
+  <b>Viernes:</b>
+  <%= @sportsfield.friday %>
+</td>
+<td>
+  <b>Inicio:</b>
+  <%= @sportsfield.fri_start_time %>
+</td>
+<td>
+  <b>Fin:</b>
+  <%= @sportsfield.fri_end_time %>
+</td>
+</p>
+
+<p>
+  <td>
+  <b>Sabado:</b>
+  <%= @sportsfield.saturday %>
+</td>
+<td>
+  <b>Inicio:</b>
+  <%= @sportsfield.sat_start_time %>
+</td>
+<td>
+  <b>Fin:</b>
+  <%= @sportsfield.sat_end_time %>
+</td>
+</p/
+
+<p>
+ 
+  <td>
+  <b>Domingo:</b>
+  <%= @sportsfield.sunday %>
+</td> 
+
+
+<td>
+  <b>Inicio:</b>
+  <%= @sportsfield.sun_start_time %>
+</td>
+
+<td>
+  <b>Fin:</b>
+  <%= @sportsfield.sun_end_start %>
+</td>
+</p>
+<p>
+  <b>Imagen:</b>
+  <%= @sportsfield.imagen %>
+</p>
+
+
+<%= link_to 'Modificar', edit_sportsfield_path(@sportsfield) %> |
+<%= link_to 'Retornar', sportsfields_path %>
+<section>
