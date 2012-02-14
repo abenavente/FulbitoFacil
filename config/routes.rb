@@ -4,8 +4,13 @@ FulbitoFacil::Application.routes.draw do
 # get "log_out" => "sessions#destroy", :as => "log_out"
   match "log_in" => "session#create" #, :as => "log_in"
   match "log_out" => "session#destroy"
-
+  match "registro" => "session#registro"
+  match "registroDueno" => "owners#new"
+  match "registroJugador" => "customers#new"
+  
   get "sign_up" => "customers#new", :as => "sign_up"
+
+
   root :to => "session#new"
 
 

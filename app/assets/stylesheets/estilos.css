@@ -41,7 +41,7 @@ header
 
 h2
 {
-	color: white;
+	color: black;
 	padding-bottom: 5px;	
 	vertical-align:baseline;
 }
@@ -133,6 +133,17 @@ nav ul li a:hover {
 	width: 826px;	
 	position: relative;
 }
+#contenedorCentralRegistro
+{
+    background:white;
+    border: 10px solid white;
+    border-radius:10px;
+    height: 450px;
+    margin: 0 auto;
+    margin-top: 50px;   
+    width: 826px;   
+    position: relative;
+}
 
 #contenedor2
 {
@@ -159,7 +170,30 @@ nav ul li a:hover {
 	vertical-align: top;
 	width: 324.48px;
 }
-
+#cont1
+{
+    background: #1f211b;
+    
+    margin-left: 80px;   
+    margin-top: 60px;
+    display: inline-block;
+    height:60%;
+    left:10px;
+    vertical-align: top;
+    width: 324.48px;
+}
+#cont2
+{
+    background: #1f211b;
+    
+    margin-left: 12px;   
+    margin-top: 60px;
+    display: inline-block;
+    height:60%;
+    left:10px;
+    vertical-align: top;
+    width: 324.48px;
+}
 #contenedor2 article
 {
 	border-radius: 0.5em;
@@ -189,14 +223,14 @@ text-align: left;
 #navLogin
 {
 	margin :0 auto;
-    width:480px;
+    width:300px;
+
 	
 }
 #navPrincipal
 {
 	padding: 21px;
-    width:420px;
-
+    width:400px;
 }
 
 #tituloWeb 
