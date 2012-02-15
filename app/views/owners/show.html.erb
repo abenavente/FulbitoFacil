@@ -1,3 +1,6 @@
+<section id="contenedorBasico">
+<h1>Panel de control Duenho de Canchitas</h1>
+<section id="datosGeneralesPanel">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -42,4 +45,9 @@
 
 
 <%= link_to 'Edit', edit_owner_path(@owner) %> |
-<%= link_to 'Back', owners_path %>
+</section>
+<section id="datosOpcionesPanel">
+  <P id="bazul"><%= link_to "buscarCanchas", buscarCanchas_path %></p>
+  <P id="bazul"><%= link_to "reservaActual", reservaActual_path %></p>
+
+</section>

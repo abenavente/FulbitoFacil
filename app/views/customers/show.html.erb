@@ -1,3 +1,6 @@
+<section id="contenedorBasico">
+<h1>Panel de control Jugador</h1>
+<section id="datosGeneralesPanel">
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -54,7 +57,11 @@
   <b>Phone:</b>
   <%= @customer.phone %>
 </p>
+<%= link_to 'Edit', edit_customer_path(@customer) %>  
+</section>
+<section id="datosOpcionesPanel">
+  <P id="bazul"><%= link_to "buscarCanchas", buscarCanchas_path %></p>
+  <P id="bazul"><%= link_to "reservaActual", reservaActual_path %></p>
 
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+</section>
+</section>

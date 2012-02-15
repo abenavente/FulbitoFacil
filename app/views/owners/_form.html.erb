@@ -1,3 +1,4 @@
+<section id="contenedorBasico">
 <%= simple_form_for(@owner) do |f| %>
  <% if @owner.errors.any? %>
     <div id="error_explanation">
@@ -26,3 +27,4 @@
     <%= f.input :birthday, :label => "Fecha de Nacimiento : "  %>
     <%= f.submit 'Aceptar'  %>
 <% end %>
+</section>

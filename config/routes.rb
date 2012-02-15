@@ -11,7 +11,10 @@ FulbitoFacil::Application.routes.draw do
   match "registro" => "session#registro"
   match "registroDueno" => "owners#new"
   match "registroJugador" => "customers#new"
-  
+  match "buscarCanchas" => "owners#new"
+  match "reservaActual" => "customers#new"
+
+
   get "sign_up" => "customers#new", :as => "sign_up"
 
 

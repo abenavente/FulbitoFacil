@@ -10,9 +10,6 @@ body
 
 footer
 {
-
-   
-
 	float: left;
 	position: fixed;
     left:0;
@@ -166,6 +163,7 @@ nav ul li a:hover {
 
 #contenedor1
 {
+    color: white;
 	background: #1f211b;
 	
     margin-left: 12px;   
@@ -175,6 +173,33 @@ nav ul li a:hover {
     left:10px;
 	vertical-align: top;
 	width: 324.48px;
+}
+#datosGeneralesPanel
+{
+    color: white;
+    
+    background: #1f211b;
+    
+    margin-left: 12px;   
+    margin-top: 12px;
+    display: inline-block;
+    height:91%;
+    left:10px;
+    vertical-align: top;
+    width: 500.48px;
+}
+#datosOpcionesPanel
+{
+    color: white;
+    
+    background: #1f211b;
+    display: inline-block;
+    height:91%;  
+    margin-top: 12px;   
+    left:10px;
+    right:0px;
+    width: 300px;
+    vertical-align: top;
 }
 #cont1
 {
