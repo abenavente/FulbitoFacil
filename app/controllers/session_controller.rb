@@ -6,7 +6,9 @@ class SessionController < ApplicationController
     customer = Customer.authenticate(params[:email], params[:password])
     if customer
       session[:customer_id] = customer.id
-      redirect_to root_url, :notice => "Conectado"
+      @customer = Customer.find(customer.id)
+      redirect_to panelJugador_path(@customer), :notice => customer.id
+    
     else
       flash.now.alert = "Cuenta invalida"
       render "new"
