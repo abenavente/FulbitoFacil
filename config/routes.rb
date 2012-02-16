@@ -1,5 +1,9 @@
 
 FulbitoFacil::Application.routes.draw do    
+  resources :additional_services
+
+  resources :service_types
+
   resources :rates
 
   resources :sportsfields

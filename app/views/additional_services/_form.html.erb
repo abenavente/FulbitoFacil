@@ -1,0 +1,19 @@
+<section id="contenedorBasico">
+<%= simple_form_for(@additional_service) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.association :service_type, :label=> "Tipo de Servicio : " %>
+
+    <%= f.input :description, :label=> "Descripcion : " %>
+
+    <%= f.input :tarifa, :label=> "Tarifa : " %> S/. 
+
+  </div>
+
+  <div class="actions">
+    <%= f.submit 'Guardar'%>
+  </div>
+<% end %>
+</section>

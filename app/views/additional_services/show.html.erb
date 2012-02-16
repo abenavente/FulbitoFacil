@@ -1,0 +1,22 @@
+<section id="contenedorBasico">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Service type:</b>
+  <%= @additional_service.service_type.name.to_s %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @additional_service.description %>
+</p>
+
+<p>
+  <b>Tarifa:</b>
+  <%= @additional_service.tarifa %>
+</p>
+
+
+<%= link_to 'Editar', edit_additional_service_path(@additional_service) %> |
+<%= link_to 'Regresar', additional_services_path %>
+</section>
