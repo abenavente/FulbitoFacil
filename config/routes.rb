@@ -31,6 +31,8 @@ FulbitoFacil::Application.routes.draw do
   match "buscarCanchas" => "sportsfields#index"
   match "reservaActual" => "customers#new"
   match "panelJugador/:id" => "customers#show", :as =>'panelJugador'
+  match "panelOwner/:id" => "owners#show", :as =>'panelOwner'
+  match "localesOwner/:id" => "locals#index", :as =>'localesOwner'
   match "panel" => "vistasGenerales#panel"
   match "reservas" => "customers#new"
   
