@@ -1,13 +1,15 @@
+<section id="contenedorBasico">
+
 <p id="notice"><%= notice %></p>
 
 <p>
   <b>Start time:</b>
-  <%= @rate.start_time %>
+  <%= @rate.start_time.strftime("%H:%M") %>
 </p>
 
 <p>
   <b>End time:</b>
-  <%= @rate.end_time %>
+  <%= @rate.end_time.strftime("%H:%M") %>
 </p>
 
 <p>
@@ -68,3 +70,4 @@
 
 <%= link_to 'Modificar', edit_rate_path(@rate) %> |
 <%= link_to 'Retornar', rates_path %>
+<section>

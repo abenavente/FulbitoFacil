@@ -6,7 +6,7 @@
     <th>Hora Inicio</th>
     <th>Hora Fin</th>
     <th>Precio</th>
-    <th>Promocion</th>
+    <th>Promo</th>
     <th>Fecha Inicio</th>
     <th>Fecha Fin</th>
     <th>Lun</th>
@@ -23,8 +23,8 @@
 
 <% @rates.each do |rate| %>
   <tr>
-    <td><%= rate.start_time %></td>
-    <td><%= rate.end_time %></td>
+    <td><%= rate.start_time.strftime("%H:%M") %></td>
+    <td><%= rate.end_time.strftime("%H:%M") %></td>
     <td><%= rate.price %></td>
     <td><%= rate.promocio %></td>
     <td><%= rate.start_date %></td>
@@ -36,9 +36,12 @@
     <td><%= rate.friday %></td>
     <td><%= rate.saturday %></td>
     <td><%= rate.sunday %></td>
-    <td><%= link_to 'Show', rate %></td>
-    <td><%= link_to 'Edit', edit_rate_path(rate) %></td>
-    <td><%= link_to 'Destroy', rate, confirm: 'Are you sure?', method: :delete %></td>
+	<td><%= link_to image_tag("ver.gif", :border=>0), rate  %></td>
+	 <td><%= link_to image_tag("editar.gif", :border=>0), edit_rate_path(rate) %></td>
+	 <td><%= link_to image_tag("icon_eliminar.png", :border=>0), rate, confirm: 'Are you sure?', method: :delete %></td>
+    
+	
+	
   </tr>
 <% end %>
 </table>
@@ -46,4 +49,4 @@
 <br />
 
 <%= link_to 'Nueva Tarifa', new_rate_path %>
-<section>
+</section>
