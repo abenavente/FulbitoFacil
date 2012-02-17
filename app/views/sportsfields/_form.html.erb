@@ -4,7 +4,8 @@
 
   
     <%= f.input :name,:label=> "Nombres : "  %>
-    <%= f.input :local, :label=> "Local: " %>
+	<%= f.association :local, :label=>"Local : "%><br />
+    
     <%= f.input :feature, :label=> "Caracteristica : " %>
 	<%= f.input :monday, :label=> "Lunes" %> 
 	 <%= f.input :mon_start_time, :label=> "Inicio:" %> 

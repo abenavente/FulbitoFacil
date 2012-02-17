@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217032104) do
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20120217051547) do
+=======
+ActiveRecord::Schema.define(:version => 20120217045531) do
+>>>>>>> 4e3fbdc81076ffe8e660a3629b6ac6301022e3ee
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -52,6 +56,12 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "distritos", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "generes", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -72,9 +82,11 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
     t.string   "phone"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.integer  "owner_id"
   end
 
   add_index "locals", ["district_id"], :name => "index_locals_on_district_id"
+  add_index "locals", ["owner_id"], :name => "index_locals_on_owner_id"
 
   create_table "owners", :force => true do |t|
     t.string   "name"
@@ -121,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
 
   create_table "sportsfields", :force => true do |t|
     t.string   "name"
-    t.string   "local"
     t.text     "feature"
     t.boolean  "monday"
     t.boolean  "tuesday"
@@ -151,8 +162,13 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
     t.string   "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
+    t.integer  "local_id"
   end
 
+  add_index "sportsfields", ["local_id"], :name => "index_sportsfields_on_local_id"
+
+<<<<<<< HEAD
+=======
   create_table "usercustomers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -171,4 +187,5 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
   add_index "usercustomers", ["email"], :name => "index_usercustomers_on_email", :unique => true
   add_index "usercustomers", ["reset_password_token"], :name => "index_usercustomers_on_reset_password_token", :unique => true
 
+>>>>>>> 4e3fbdc81076ffe8e660a3629b6ac6301022e3ee
 end

@@ -3,6 +3,7 @@
 
   <div class="inputs">
     <%= f.input :name,:label=> "Nombre : " %>
+	<%= f.association :owner, :label=>"Propietario : "%><br />
     <%= f.input :address,:label=> "Direccion : " %>
     <%= f.association :district,:label=> "Distrito : " %>
     <%= f.input :google_maps_address,:label=> "Direccion Google Maps : " %>

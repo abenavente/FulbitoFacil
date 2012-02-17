@@ -1,5 +1,6 @@
 class Owner < ActiveRecord::Base
   belongs_to :genere
+  belongs_to :local
   belongs_to :identity_card_type
 
 	devise :database_authenticatable, :timeoutable, :timeoutable,:timeout_in => 20.seconds
