@@ -1,0 +1,23 @@
+<section id="contenedorCentral">
+  <section id="contenedor1">
+    <article>
+      <h2>Ingresa a la red mas grande de jugadores y canchitas</h2>
+
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="inputs">
+    <%= f.input :email, :required => false, :autofocus => true %>
+    <%= f.input :password, :required => false %>
+    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, "Sign in" %>
+  </div>
+<% end %>
+
+<%= render "links" %>
+</article>
+  </section>      
+  <section id="contenedor2">        
+  </section>      
+</section>

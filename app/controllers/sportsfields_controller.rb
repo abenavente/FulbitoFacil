@@ -1,4 +1,5 @@
 class SportsfieldsController < ApplicationController
+  #before_filter :authenticate_usercustomer!, :except => [:show, :index]
   # GET /sportsfields
   # GET /sportsfields.json
   def index

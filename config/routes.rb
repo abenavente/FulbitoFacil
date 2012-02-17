@@ -1,5 +1,15 @@
 
 FulbitoFacil::Application.routes.draw do    
+  devise_for :usercustomers, :customers ,:owners 
+  
+  devise_scope :customer do
+      match "inicioSesionJugador" => "devise/sessions#new"
+  end
+
+  devise_scope :owner do
+      match "inicioSesionOwner" => "devise/sessions#new"
+  end
+
   resources :additional_services
 
   resources :service_types
@@ -10,22 +20,24 @@ FulbitoFacil::Application.routes.draw do
 
 #  get "log_in" => "session#create", :as => "log_in"
 # get "log_out" => "sessions#destroy", :as => "log_out"
-  match "log_in" => "session#create" #, :as => "log_in"
-  match "log_out" => "session#destroy"
-  match "registro" => "session#registro"
+  #match "log_in" => "session#create" #, :as => "log_in"
+  #match "log_out" => "session#destroy"
+  match "registro" => "vistasGenerales#registro"
   match "registroDueno" => "owners#new"
   match "registroJugador" => "customers#new"
-  match "buscarCanchas" => "owners#new"
+  match "buscarCanchas" => "sportsfields#index"
   match "reservaActual" => "customers#new"
   match "panelJugador" => "customers#show"
+  #match "inicioSesion" => "devise/sessions#new"
+
 
   get "sign_up" => "customers#new", :as => "sign_up"
 
 
-  root :to => "session#new"
+  root :to => "vistasGenerales#index"
 
 
-  resources :sessions
+  
 
   resources :customers
 
