@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217032104) do
+ActiveRecord::Schema.define(:version => 20120217045531) do
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -47,6 +47,12 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
   add_index "customers", ["identity_card_type_id"], :name => "index_customers_on_identity_card_type_id"
 
   create_table "districts", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "distritos", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -121,7 +127,6 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
 
   create_table "sportsfields", :force => true do |t|
     t.string   "name"
-    t.string   "local"
     t.text     "feature"
     t.boolean  "monday"
     t.boolean  "tuesday"
@@ -151,7 +156,10 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
     t.string   "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
+    t.integer  "local_id"
   end
+
+  add_index "sportsfields", ["local_id"], :name => "index_sportsfields_on_local_id"
 
   create_table "usercustomers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
