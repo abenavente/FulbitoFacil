@@ -2,7 +2,7 @@ class CreateSportsfields < ActiveRecord::Migration
   def change
     create_table :sportsfields do |t|
       t.string :name
-      t.string :local
+        t.references :local
       t.text :feature
       t.boolean :monday
       t.boolean :tuesday
@@ -29,5 +29,6 @@ class CreateSportsfields < ActiveRecord::Migration
 
       t.timestamps
     end
+	 add_index :sportsfields, :local_id
   end
 end

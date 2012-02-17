@@ -1,0 +1,27 @@
+<%= simple_form_for(@comment) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.input :rating, :collection => 1..5, :as => :radio %>
+     
+
+	
+	<%= f.label :comment %>
+	<%= f.text_area :comment %>
+	
+
+    <%= f.label :customers_id %>  
+    <%= collection_select("customers", "customers_id" , Customer.all, "id", "name")%>
+	
+	
+    <%= f.label :sportsfields_id %>  
+    <%= collection_select("sportsfields", "sportsfields_id" , Sportsfield.all, "id", "name")%>
+	
+	
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

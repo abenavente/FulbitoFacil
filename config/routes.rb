@@ -1,5 +1,11 @@
 
 FulbitoFacil::Application.routes.draw do    
+  resources :publicities
+
+  resources :comments
+
+  resources :ubications
+
   devise_for :usercustomers, :customers ,:owners 
   
 

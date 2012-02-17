@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Titulo:</b>
+  <%= @publicity.titulo %>
+</p>
+
+<p>
+  <b>Contenido:</b>
+  <%= image_tag @sportsfield.contenido.url %>
+</p>
+
+<p>
+  <b>Fechainicio:</b>
+  <%= @publicity.fechaInicio %>
+</p>
+
+<p>
+  <b>Fechafin:</b>
+  <%= @publicity.fechaFin %>
+</p>
+
+<p>
+  <b>Tarifa:</b>
+  <%= @publicity.tarifa %>
+</p>
+
+<p>
+  <b>Nroclick:</b>
+  <%= @publicity.nroclick %>
+</p>
+
+<p>
+  <b>Ubications:</b>
+  <%= @publicity.ubications %>
+</p>
+
+
+<%= link_to 'Edit', edit_publicity_path(@publicity) %> |
+<%= link_to 'Back', publicities_path %>

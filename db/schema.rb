@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217051547) do
+ActiveRecord::Schema.define(:version => 20120217162724) do
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(:version => 20120217051547) do
   end
 
   add_index "additional_services", ["service_type_id"], :name => "index_additional_services_on_service_type_id"
+
+  create_table "comments", :force => true do |t|
+    t.integer  "rating"
+    t.string   "comment"
+    t.integer  "customers_id"
+    t.integer  "sportsfields_id"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "comments", ["customers_id"], :name => "index_comments_on_customers_id"
+  add_index "comments", ["sportsfields_id"], :name => "index_comments_on_sportsfields_id"
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -103,6 +115,20 @@ ActiveRecord::Schema.define(:version => 20120217051547) do
   add_index "owners", ["genere_id"], :name => "index_owners_on_genere_id"
   add_index "owners", ["identity_card_type_id"], :name => "index_owners_on_identity_card_type_id"
 
+  create_table "publicities", :force => true do |t|
+    t.string   "titulo"
+    t.string   "contenido"
+    t.date     "fechaInicio"
+    t.date     "fechaFin"
+    t.decimal  "tarifa"
+    t.integer  "nroclick"
+    t.integer  "ubications_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "publicities", ["ubications_id"], :name => "index_publicities_on_ubications_id"
+
   create_table "rates", :force => true do |t|
     t.time     "start_time"
     t.time     "end_time"
@@ -129,6 +155,7 @@ ActiveRecord::Schema.define(:version => 20120217051547) do
 
   create_table "sportsfields", :force => true do |t|
     t.string   "name"
+    t.integer  "local_id"
     t.text     "feature"
     t.boolean  "monday"
     t.boolean  "tuesday"
@@ -158,10 +185,15 @@ ActiveRecord::Schema.define(:version => 20120217051547) do
     t.string   "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
-    t.integer  "local_id"
   end
 
   add_index "sportsfields", ["local_id"], :name => "index_sportsfields_on_local_id"
+
+  create_table "ubications", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "usercustomers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
