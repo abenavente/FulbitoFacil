@@ -67,6 +67,7 @@ nav{
     overflow:hidden;
     
 }
+
 nav ul{
     list-style:none;
     margin:0 10px 0 10px;
@@ -97,6 +98,7 @@ nav ul li:hover{
       
 }
 nav ul li a{
+   
     color:white;
     display:block;
     padding:5px;
@@ -107,9 +109,40 @@ nav ul li a{
     -o-transition: 0.4s linear all;
     transition: 0.4s linear all;
 }
+
 nav ul li a:hover {
     
     background-color: #9FC54E;
+}
+
+#buttons {
+margin: 10px 0 40px 0;
+float: left;
+width: 300px;
+padding: 0;
+font-size: 20px;
+}
+#button_left a {
+
+
+border-radius:10px;
+background: #9FC54E;
+display: block;
+width: 239px;
+height: 60px;
+text-decoration: none;
+color: white;
+outline: none;
+cursor: pointer;
+margin-bottom: 10px;
+text-align:center;
+padding: 0;
+}
+#button_left a:hover{
+
+
+background: #2786C2;
+
 }
 
 #contenedorBasico{
@@ -186,11 +219,14 @@ nav ul li a:hover {
     vertical-align: top;
     width: 500.48px;
 }
+#tamaul {
+    width:200;
+
+}
 #datosOpcionesPanel
 {
     color: white;
     
-    background: #1f211b;
     display: inline-block;
     height:91%;  
     margin-top: 12px;   
@@ -259,6 +295,13 @@ text-align: left;
     width:300px;
 
 	
+}
+#navOpcionesPanel
+{
+    margin :0 auto;
+    width:300px;
+
+    
 }
 #navPrincipal
 {
