@@ -1,15 +1,16 @@
-<%= simple_form_for(@sportsfield) do |f| %>
+
+<%= simple_form_for @sportsfield, :html => { :multipart => true } do |f| %>
   <%= f.error_notification %>
 
   
     <%= f.input :name,:label=> "Nombres : "  %>
     <%= f.input :local, :label=> "Local: " %>
     <%= f.input :feature, :label=> "Caracteristica : " %>
-    <%= f.input :monday, :label=> "Lunes " %>
-	<%= f.input :mon_start_time, :label=> "Hora Inicio : " %>
-	<%= f.input :mon_end_time, :label=> "Hora Fin : "  %>
-    <%= f.input :tuesday, :label=> "Martes " %>
-	 <%= f.input :tue_start_time, :label=> "Hora Inicio : "  %>
+	<%= f.input :monday, :label=> "Lunes" %> 
+	 <%= f.input :mon_start_time, :label=> "Inicio:" %> 
+	<%= f.input :mon_end_time, :label=> "Fin:"  %> 
+	<%= f.input :tuesday, :label=> "Martes " %>
+	<%= f.input :tue_start_time, :label=> "Hora Inicio : "  %>
     <%= f.input :tue_end_time, :label=> "Hora Fin : "   %>
     <%= f.input :wednesday, :label=> "Miercoles " %>
 	<%= f.input :wed_start_time, :label=> "Hora Inicio : "  %>
@@ -24,9 +25,13 @@
 	 <%= f.input :sat_start_time, :label=> "Hora Inicio : "  %>
     <%= f.input :sat_end_time, :label=> "Hora Fin : "   %>
     <%= f.input :sunday, :label=> "Domingo " %>    
-      <%= f.input :sun_start_time, :label=> "Hora Inicio : "  %>
+    <%= f.input :sun_start_time, :label=> "Hora Inicio : "  %>
     <%= f.input :sun_end_start, :label=> "Hora Fin : "   %>
-    <%= f.input :imagen %>
+   	 <p>
+  <%= f.file_field :imagen %>
+  </p>
+  
+
     <%= f.submit 'Crear Campo'  %>
  <% end %>
 

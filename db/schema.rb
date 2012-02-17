@@ -145,8 +145,12 @@ ActiveRecord::Schema.define(:version => 20120217032104) do
     t.time     "sun_start_time"
     t.time     "sun_end_start"
     t.string   "imagen"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+    t.string   "imagen_file_name"
+    t.string   "imagen_content_type"
+    t.integer  "imagen_file_size"
+    t.datetime "imagen_updated_at"
   end
 
   create_table "usercustomers", :force => true do |t|

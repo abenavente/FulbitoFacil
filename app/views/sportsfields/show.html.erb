@@ -1,6 +1,8 @@
 <section id="contenedorBasico">
 <p id="notice"><%= notice %></p>
 
+<%= image_tag @sportsfield.imagen.url %>
+
 <p>
   <b>Nombre:</b>
   <%= @sportsfield.name %>
@@ -23,12 +25,12 @@
 
 <td>
   <b>Inicio:</b>
-  <%= @sportsfield.mon_start_time %>
+  <%= @sportsfield.mon_start_time.strftime("%H:%M") %>
 </td>
 
 <td>
   <b>Fin:</b>
-  <%= @sportsfield.mon_end_time %>
+  <%= @sportsfield.mon_end_time.strftime("%H:%M") %>
 </td>
 <p>
 <td>
@@ -38,12 +40,12 @@
 
 <td>
   <b>Inicio: </b>
-  <%= @sportsfield.tue_start_time %>
+  <%= @sportsfield.tue_start_time.strftime("%H:%M") %>
 </td>
 
 <td>
  <b>Fin:</b>
-  <%= @sportsfield.tue_end_time %>
+  <%= @sportsfield.tue_end_time.strftime("%H:%M") %>
 </td>
 </p>
 <p>
@@ -53,11 +55,11 @@
 </td>
 <td>
   <b>Inicio:</b>
-  <%= @sportsfield.wed_start_time %>
+  <%= @sportsfield.wed_start_time.strftime("%H:%M") %>
 </td>
 <td>
   <b>Fin:</b>
-  <%= @sportsfield.wed_end_time %>
+  <%= @sportsfield.wed_end_time.strftime("%H:%M") %>
 </td>
 </p>
 <p>
@@ -67,11 +69,11 @@
 </td>
 <td>
   <b>Inicio:</b>
-  <%= @sportsfield.thu_start_time %>
+  <%= @sportsfield.thu_start_time.strftime("%H:%M") %>
 </td>
 <td>
   <b>Fin:</b>
-  <%= @sportsfield.thu_end_time %>
+  <%= @sportsfield.thu_end_time.strftime("%H:%M") %>
 </td>
 </p>
 <p>
@@ -81,11 +83,11 @@
 </td>
 <td>
   <b>Inicio:</b>
-  <%= @sportsfield.fri_start_time %>
+  <%= @sportsfield.fri_start_time.strftime("%H:%M") %>
 </td>
 <td>
   <b>Fin:</b>
-  <%= @sportsfield.fri_end_time %>
+  <%= @sportsfield.fri_end_time.strftime("%H:%M") %>
 </td>
 </p>
 
@@ -96,35 +98,29 @@
 </td>
 <td>
   <b>Inicio:</b>
-  <%= @sportsfield.sat_start_time %>
+  <%= @sportsfield.sat_start_time.strftime("%H:%M") %>
 </td>
 <td>
   <b>Fin:</b>
-  <%= @sportsfield.sat_end_time %>
+  <%= @sportsfield.sat_end_time.strftime("%H:%M") %>
 </td>
 </p/
 
 <p>
- 
-  <td>
+   <td>
   <b>Domingo:</b>
   <%= @sportsfield.sunday %>
 </td> 
 
-
 <td>
   <b>Inicio:</b>
-  <%= @sportsfield.sun_start_time %>
+  <%= @sportsfield.sun_start_time.strftime("%H:%M") %>
 </td>
 
 <td>
   <b>Fin:</b>
-  <%= @sportsfield.sun_end_start %>
+  <%= @sportsfield.sun_end_start.strftime("%H:%M") %>
 </td>
-</p>
-<p>
-  <b>Imagen:</b>
-  <%= @sportsfield.imagen %>
 </p>
 
 

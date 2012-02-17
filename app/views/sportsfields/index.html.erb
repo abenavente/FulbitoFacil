@@ -1,11 +1,10 @@
 <section id="contenedorBasico">
 <h1>Lista de Campos deportivos</h1>
-
 <table border="1">
   <tr>
     <th>Nombre</th>
     <th>Local</th>
-    <th>Caracteristica</th>
+    <!-- <th>Caracteristica</th> -->
     <th>Lun</th>
 	<th>Inicio</th>
     <th>Fin</th>
@@ -27,7 +26,6 @@
 	<th>Dom</th>    
     <th>Inicio</th>
     <th>Fin</th>
-    <th>Imagen</th>
     <th></th>
     <th></th>
     <th></th>
@@ -37,37 +35,75 @@
   <tr>
     <td><%= sportsfield.name %></td>
     <td><%= sportsfield.local %></td>
-    <td><%= sportsfield.feature %></td>
-    <td><%= sportsfield.monday %></td>
-	<td><%= sportsfield.mon_start_time %></td>
-    <td><%= sportsfield.mon_end_time %></td>
-    <td><%= sportsfield.tuesday %></td>
-	 <td><%= sportsfield.tue_start_time %></td>
-    <td><%= sportsfield.tue_end_time %></td>
-    <td><%= sportsfield.wednesday %></td>
-	 <td><%= sportsfield.wed_start_time %></td>
-    <td><%= sportsfield.wed_end_time %></td>
-    <td><%= sportsfield.thursday %></td>
-	<td><%= sportsfield.thu_start_time %></td>
-    <td><%= sportsfield.thu_end_time %></td>
-	<td><%= sportsfield.friday %></td>
-	<td><%= sportsfield.fri_start_time %></td>
-    <td><%= sportsfield.fri_end_time %></td>
-    <td><%= sportsfield.saturday %></td>
-	<td><%= sportsfield.sat_start_time %></td>
-    <td><%= sportsfield.sat_end_time %></td>
-    <td><%= sportsfield.sunday %></td>
-    <td><%= sportsfield.sun_start_time %></td>
-    <td><%= sportsfield.sun_end_start %></td>
-    <td><%= sportsfield.imagen %></td>
-    <td><%= link_to 'Show', sportsfield %></td>
-    <td><%= link_to 'Edit', edit_sportsfield_path(sportsfield) %></td>
-    <td><%= link_to 'Destroy', sportsfield, confirm: 'Are you sure?', method: :delete %></td>
+    <!-- <td><%= sportsfield.feature %></td>-->
+    	
+	<td> <%= if sportsfield.monday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	
+	<td><%= sportsfield.mon_start_time.strftime("%H:%M") %></td> 
+    <td><%= sportsfield.mon_end_time.strftime("%H:%M") %></td>
+    <td> <%= if sportsfield.tuesday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	 <td><%= sportsfield.tue_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.tue_end_time.strftime("%H:%M") %></td>
+   <td> <%= if sportsfield.wednesday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	 <td><%= sportsfield.wed_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.wed_end_time.strftime("%H:%M") %></td>
+   
+	<td> <%= if sportsfield.thursday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	<td><%= sportsfield.thu_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.thu_end_time.strftime("%H:%M") %></td>
+	
+	<td> <%= if sportsfield.friday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	<td><%= sportsfield.fri_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.fri_end_time.strftime("%H:%M") %></td>
+   
+	<td> <%= if sportsfield.saturday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	<td><%= sportsfield.sat_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.sat_end_time.strftime("%H:%M") %></td>
+    
+	<td> <%= if sportsfield.sunday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+    <td><%= sportsfield.sun_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.sun_end_start.strftime("%H:%M") %></td>
+    
+	 <td><%= link_to image_tag("ver.gif", :border=>0), sportsfield  %></td>
+	 <td><%= link_to image_tag("editar.gif", :border=>0), edit_sportsfield_path(sportsfield) %></td>
+	 <td><%= link_to image_tag("icon_eliminar.png", :border=>0), sportsfield, confirm: 'Are you sure?', method: :delete %></td>
+ 
+     
+
   </tr>
 <% end %>
-</table>
-
+   </table>
+   
+  
 <br />
-
 <%= link_to 'Crear Campo', new_sportsfield_path %>
+
 </section>
