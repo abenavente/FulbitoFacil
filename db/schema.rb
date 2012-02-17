@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120216221159) do
+=======
+ActiveRecord::Schema.define(:version => 20120216011605) do
+
+  create_table "additional_services", :force => true do |t|
+    t.integer  "service_type_id"
+    t.string   "description"
+    t.decimal  "tarifa"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "additional_services", ["service_type_id"], :name => "index_additional_services_on_service_type_id"
+>>>>>>> 6d96122e22b2b7aee1ada8702c5b53270f400274
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -20,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120216221159) do
     t.integer  "identity_card_type_id"
     t.string   "number_identity_card"
     t.string   "address"
+    t.integer  "district_id"
     t.string   "email"
     t.string   "password"
     t.date     "birthday"
@@ -28,7 +43,6 @@ ActiveRecord::Schema.define(:version => 20120216221159) do
     t.datetime "updated_at",            :null => false
     t.string   "password_confirmation"
     t.string   "email_confirmation"
-    t.integer  "district_id"
   end
 
   add_index "customers", ["district_id"], :name => "index_customers_on_district_id"
@@ -103,6 +117,12 @@ ActiveRecord::Schema.define(:version => 20120216221159) do
     t.boolean  "friday"
     t.boolean  "saturday"
     t.boolean  "sunday"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "service_types", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

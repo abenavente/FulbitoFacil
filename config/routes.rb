@@ -1,5 +1,9 @@
 
 FulbitoFacil::Application.routes.draw do    
+  resources :additional_services
+
+  resources :service_types
+
   resources :rates
 
   resources :sportsfields
@@ -8,8 +12,16 @@ FulbitoFacil::Application.routes.draw do
 # get "log_out" => "sessions#destroy", :as => "log_out"
   match "log_in" => "session#create" #, :as => "log_in"
   match "log_out" => "session#destroy"
+  match "registro" => "session#registro"
+  match "registroDueno" => "owners#new"
+  match "registroJugador" => "customers#new"
+  match "buscarCanchas" => "owners#new"
+  match "reservaActual" => "customers#new"
+  match "panelJugador" => "customers#show"
 
   get "sign_up" => "customers#new", :as => "sign_up"
+
+
   root :to => "session#new"
 
 

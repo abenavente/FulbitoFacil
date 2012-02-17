@@ -6,16 +6,23 @@ class SessionController < ApplicationController
     customer = Customer.authenticate(params[:email], params[:password])
     if customer
       session[:customer_id] = customer.id
-      redirect_to root_url, :notice => "Logged in!"
+      @customer = Customer.find(customer.id)
+      redirect_to panelJugador_path(@customer), :notice => customer.id
+    
     else
-      flash.now.alert = "Invalid email or password"
+      flash.now.alert = "Cuenta invalida"
       render "new"
     end
   end
   
   def destroy
   session[:customer_id] = nil
-  redirect_to root_url, :notice => "Logged out!"
+  redirect_to root_url, :notice => "Desconectado"
+  end
+
+  def registro
+    
+
   end
 
 end

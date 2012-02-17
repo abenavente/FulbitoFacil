@@ -1,0 +1,29 @@
+<section id="contenedorBasico">
+<h1>Lista de Servicios Adicionales</h1>
+
+<table>
+  <tr>
+    <th>Tipo de Servicio</th>
+    <th>Descripcion</th>
+    <th>Tarifa</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @additional_services.each do |additional_service| %>
+  <tr>
+    <td><%= additional_service.service_type.name.to_s %></td>
+    <td><%= additional_service.description %></td>
+    <td><%= additional_service.tarifa %></td>
+    <td><%= link_to 'Mostrar', additional_service %></td>
+    <td><%= link_to 'Editar', edit_additional_service_path(additional_service) %></td>
+    <td><%= link_to 'Eliminar', additional_service, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nuevo Servicio Adicional', new_additional_service_path %>
+</section>

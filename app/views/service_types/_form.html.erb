@@ -1,0 +1,13 @@
+<%= simple_form_for(@service_type) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.input :name, :label=> "Nombre" %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

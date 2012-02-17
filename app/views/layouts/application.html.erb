@@ -29,23 +29,13 @@
 		<section id="menuPrincipal">
 		<nav id="navPrincipal">
 			<ul >
-				<li><%= link_to "Log in", log_in_path %></li>
-			 	<li><a href="ourcompany.html">Locales</a></li>
-			 	<li><a href="policies.html">Canchas</a></li>
-			 	<li><a href="doc_repository.html">Jugadores</a></li>
+				<li><%= link_to "Ingresar", log_in_path %></li>
+			 	<li><%= link_to "Registrarse", registro_path %></li>
+			 	<li><%= link_to "Salir", log_out_path %></li>
 			 </ul>
 		</nav>
 		</section>
-		<section id="botonesLogin">
-		<nav id="user_nav">
-		 <% if current_customer %> Logged in as <%= current_customer.email %>
-    	<%= link_to "Log out", log_out_path %>
-  			<% else %>
-    	<%= link_to "Sign up", sign_up_path %> or 
-    	<%= link_to "Log in", log_in_path %>
-  		<% end %>
-		</nav>
-		</section>
+		
 </header>
 <body>
 
@@ -55,6 +45,8 @@
 
 
 <%= yield %>
+
+<div id="espacioInferior"> </div>
 </body>
 
 <footer>
