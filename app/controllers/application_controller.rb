@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
   			if customer_signed_in?
             panelJugador_path(resource)
+          else
+            panelOwner_path(resource)
         end 
    end
 

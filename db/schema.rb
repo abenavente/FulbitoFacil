@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120217162724) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20120217054126) do
+=======
+ActiveRecord::Schema.define(:version => 20120217051547) do
+>>>>>>> 45cbd42ea74a77f6897acb14521eec71cfb81493
+>>>>>>> dd25ea65578fb0f4860e541525e93f6f4c5b0328
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -64,12 +72,6 @@ ActiveRecord::Schema.define(:version => 20120217162724) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "distritos", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "generes", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -86,11 +88,18 @@ ActiveRecord::Schema.define(:version => 20120217162724) do
     t.string   "name"
     t.string   "address"
     t.integer  "district_id"
-    t.text     "google_maps_address"
     t.string   "phone"
+<<<<<<< HEAD
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+=======
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "owner_id"
+>>>>>>> 45cbd42ea74a77f6897acb14521eec71cfb81493
   end
 
   add_index "locals", ["district_id"], :name => "index_locals_on_district_id"

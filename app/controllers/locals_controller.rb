@@ -2,8 +2,23 @@ class LocalsController < ApplicationController
   # GET /locals
   # GET /locals.json
   def index
-    @locals = Local.all
 
+    @locals = Local.all
+    @json = Local.all.to_gmaps4rails
+
+    @search = Local.where(:owner_id => current_owner.id)   
+    @locals= @search.all  
+
+
+    respond_to do |format|
+      format.html  # index.html.erb 
+      format.json { render json: @locals }
+    end
+  end
+
+  def canchasOwner
+    @search = Sportsfield.search(params[:owner_id])   
+    @locals= @search.all  
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @locals }

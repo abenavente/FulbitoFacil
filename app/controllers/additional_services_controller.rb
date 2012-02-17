@@ -2,12 +2,15 @@ class AdditionalServicesController < ApplicationController
   # GET /additional_services
   # GET /additional_services.json
   def index
-    @additional_services = AdditionalService.all
+    @search = AdditionalService.where(:owner_id => current_owner.id)   
+    @additional_services= @search.all  
+    #@additional_services = AdditionalService.all
 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @additional_services }
     end
+	
   end
 
   # GET /additional_services/1
