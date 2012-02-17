@@ -1,5 +1,5 @@
 <section id="contenedorBasico">
-<h1>Panel de control Duenho de Canchitas</h1>
+<h1>Panel de control Propietario de Canchitas</h1>
 <section id="datosGeneralesPanel">
 <p id="notice"><%= notice %></p>
 
@@ -47,7 +47,9 @@
 <%= link_to 'Edit', edit_owner_path(@owner) %> |
 </section>
 <section id="datosOpcionesPanel">
-  <P id="bazul"><%= link_to "buscarCanchas", buscarCanchas_path %></p>
-  <P id="bazul"><%= link_to "reservaActual", reservaActual_path %></p>
+  <P id="bazul"><%= link_to "Locales", locals_path %></p>
+  <P id="bazul"><%= link_to "Canchitas", sportsfields_path %></p>
+  <P id="bazul"><%= link_to "Ver Reservas", reservas_path %></p>
+
 
 </section>
