@@ -11,10 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20120216221159) do
-=======
-ActiveRecord::Schema.define(:version => 20120216011605) do
+ActiveRecord::Schema.define(:version => 20120217051547) do
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -25,7 +22,6 @@ ActiveRecord::Schema.define(:version => 20120216011605) do
   end
 
   add_index "additional_services", ["service_type_id"], :name => "index_additional_services_on_service_type_id"
->>>>>>> 6d96122e22b2b7aee1ada8702c5b53270f400274
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -81,9 +77,11 @@ ActiveRecord::Schema.define(:version => 20120216011605) do
     t.string   "phone"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.integer  "owner_id"
   end
 
   add_index "locals", ["district_id"], :name => "index_locals_on_district_id"
+  add_index "locals", ["owner_id"], :name => "index_locals_on_owner_id"
 
   create_table "owners", :force => true do |t|
     t.string   "name"
@@ -129,7 +127,6 @@ ActiveRecord::Schema.define(:version => 20120216011605) do
 
   create_table "sportsfields", :force => true do |t|
     t.string   "name"
-    t.string   "local"
     t.text     "feature"
     t.boolean  "monday"
     t.boolean  "tuesday"
@@ -159,6 +156,9 @@ ActiveRecord::Schema.define(:version => 20120216011605) do
     t.string   "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
+    t.integer  "local_id"
   end
+
+  add_index "sportsfields", ["local_id"], :name => "index_sportsfields_on_local_id"
 
 end

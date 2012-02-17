@@ -1,5 +1,6 @@
 class Owner < ActiveRecord::Base
   belongs_to :genere
+  belongs_to :local
   belongs_to :identity_card_type
   validates_presence_of :name, :lastname, :genere_id, :identity_card_type_id, :number_identity_card, :email, :password, :birthday
   validates_uniqueness_of :email
