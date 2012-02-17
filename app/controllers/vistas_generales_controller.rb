@@ -1,0 +1,2 @@
+class VistasGeneralesController < ApplicationController
+end

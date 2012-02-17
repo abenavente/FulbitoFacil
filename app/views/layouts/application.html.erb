@@ -29,23 +29,52 @@
 		<section id="menuPrincipal">
 		<nav id="navPrincipal">
 			<ul >
-				<li><%= link_to "Ingresar", log_in_path %></li>
+				<li><%= link_to "Ingrese como Jugador", inicioSesionJugador_path %></li>
+        <li><%= link_to "Ingrese como Propietario", inicioSesionOwner_path %></li>
 			 	<li><%= link_to "Registrarse", registro_path %></li>
-			 	<li><%= link_to "Salir", log_out_path %></li>
+			 	<li><%= link_to "Canchas", buscarCanchas_path %></li>
 			 </ul>
 		</nav>
 		</section>
 		
 </header>
 <body>
+<div id="container">
 
-  <% flash.each do |name, msg| %>
-    <%= content_tag :div, msg, :id => "flash#{name}" %>
-  <% end %>
+  <%- flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+      <%- end -%>
+
+      <p><%= link_to 'Home', root_path %></p>
+
+      <% if usercustomer_signed_in? -%>
+        <div id="user_login_box" style="float:right">
+          <%= current_usercustomer.email %> |
+          <%= link_to 'My info', edit_usercustomer_registration_path %> |
+          <%= link_to 'Sign out', destroy_usercustomer_session_path, :method => :delete %>
+        </div>
+      <% end -%>
+      <% if customer_signed_in? -%>
+        <div id="admin_login_box" style="float:left">
+          <%= current_customer.email %> |
+          <%= link_to 'Admin section', customer_path %> |
+          <%= link_to 'Sign out', destroy_customer_session_path, :method => :delete %>
+        </div>
+      <% end -%>
+      <% if owner_signed_in? -%>
+        <div id="admin_login_box" style="float:left">
+          <%= current_owner.email %> |
+          <%= link_to 'Admin section', owner_path %> |
+          <%= link_to 'Sign out', destroy_owner_session_path, :method => :delete %>
+        </div>
+      <% end -%>
+      <div style="clear:both"></div>
+
+      
 
 
 <%= yield %>
-
+ </div>
 <div id="espacioInferior"> </div>
 </body>
 

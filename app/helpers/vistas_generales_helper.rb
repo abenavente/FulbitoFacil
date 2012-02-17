@@ -1,0 +1,2 @@
+module VistasGeneralesHelper
+end

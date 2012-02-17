@@ -121,10 +121,8 @@ nav ul li a:hover {
 	margin-top: 50px;	
 	width: 850px;	
 	position: relative;
-
-
-
 }
+
 #contenedorCentral
 {
 	background:white;
@@ -265,7 +263,7 @@ text-align: left;
 #navPrincipal
 {
 	padding: 21px;
-    width:400px;
+    width:700px;
 }
 
 #tituloWeb 
