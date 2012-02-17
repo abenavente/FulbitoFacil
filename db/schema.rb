@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217045531) do
+ActiveRecord::Schema.define(:version => 20120217054126) do
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -74,10 +74,12 @@ ActiveRecord::Schema.define(:version => 20120217045531) do
     t.string   "name"
     t.string   "address"
     t.integer  "district_id"
-    t.text     "google_maps_address"
     t.string   "phone"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
   end
 
   add_index "locals", ["district_id"], :name => "index_locals_on_district_id"

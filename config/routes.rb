@@ -34,7 +34,7 @@ FulbitoFacil::Application.routes.draw do
   get "sign_up" => "customers#new", :as => "sign_up"
 
 
-  root :to => "vistasGenerales#index"
+root :to => "vistasGenerales#index"
 
 
   

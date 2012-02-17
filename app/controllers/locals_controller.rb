@@ -3,7 +3,7 @@ class LocalsController < ApplicationController
   # GET /locals.json
   def index
     @locals = Local.all
-
+    @json = Local.all.to_gmaps4rails
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @locals }
