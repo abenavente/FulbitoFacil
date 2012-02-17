@@ -1,0 +1,2 @@
+module PublicitiesHelper
+end

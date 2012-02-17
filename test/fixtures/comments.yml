@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  rating: 1
+  comment: MyString
+  customers: 
+  sportsfields: 
+
+two:
+  rating: 1
+  comment: MyString
+  customers: 
+  sportsfields: 

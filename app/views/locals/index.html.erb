@@ -1,35 +1,57 @@
+<<<<<<< HEAD
 <section id="contenedorBasico">
 <h1>Listado de Locales</h1>
+=======
+<section id="contenedorBasicoLocales">
+<h1>Lista de Locales</h1>
+>>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
 
 <table>
   <tr>
     <th>Nombre</th>
     <th>Direccion</th>
     <th>Distrito</th>
+<<<<<<< HEAD
     <th>Google Map</th>
     <th>Telefono</th>
     <th></th>
     <th></th>
     <th></th>
+=======
+    <th>Telefono Fijo</th>
+>>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
   </tr>
 
 <% @locals.each do |local| %>
   <tr>
     <td><%= local.name %></td>
     <td><%= local.address %></td>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
     <td><%= local.district.name %></td>
     <td><%= local.google_maps_address %></td>
+=======
+    <td><%= local.district.name.to_s %></td>
+>>>>>>> dd25ea65578fb0f4860e541525e93f6f4c5b0328
     <td><%= local.phone %></td>
     <td><%= link_to 'Mostrar', local %></td>
     <td><%= link_to 'Editar', edit_local_path(local) %></td>
+<<<<<<< HEAD
     <td><%= link_to 'Canchas', canchitasLocal_path(local.id) %></td>
     <td><%= link_to 'Eliminar', local, confirm: 'Are you sure?', method: :delete %></td>
 
+=======
+    <td><%= link_to 'Eliminar', local, confirm: 'Esta Seguro?', method: :delete %></td>
+>>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Local', new_local_path %>
+<%= link_to 'Nuevo Local', new_local_path %>
+<%= gmaps4rails(@json) %>
 </section>
+

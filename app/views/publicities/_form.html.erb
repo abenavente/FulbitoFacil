@@ -1,0 +1,102 @@
+<%= simple_form_for @publicity, :html => { :multipart => true }  do |f| %>
+  <%= f.error_notification %>
+
+  
+  
+  <SCRIPT>
+<!--
+ function nameDefined(ckie,nme)
+{
+   var splitValues
+   var i
+   for (i=0;i<ckie.length;++i)
+   {
+      splitValues=ckie[i].split("=")
+      if (splitValues[0]==nme) return true
+   }
+   return false
+}
+
+function delBlanks(strng)
+{
+   var result=""
+   var i
+   var chrn
+   for (i=0;i<strng.length;++i) {
+      chrn=strng.charAt(i)
+      if (chrn!=" ") result += chrn
+   }
+   return result
+}
+function getCookieValue(ckie,nme)
+{
+   var splitValues
+   var i
+   for(i=0;i<ckie.length;++i) {
+      splitValues=ckie[i].split("=")
+      if(splitValues[0]==nme) return splitValues[1]
+   }
+   return ""
+}
+function insertCounter() {
+ readCookie()
+ displayCounter()
+}
+ function displayCounter() {
+ document.write('<p>')
+ document.write("Hits:")
+ if(counter==1) document.write("0")
+ else document.write(counter+" times.")
+ document.writeln('</p>')
+ }
+function readCookie() {
+ var cookie=document.cookie
+ counter=0
+ var chkdCookie=delBlanks(cookie)  //are on the client computer
+ var nvpair=chkdCookie.split(";")
+ if(nameDefined(nvpair,"pageCount"))
+ counter=parseInt(getCookieValue(nvpair,"pageCount"))
+ ++counter
+ var futdate = new Date()
+ var expdate = futdate.getTime()
+ expdate += 3600000 * 24 *30  //expires in 1 hour
+ futdate.setTime(expdate)
+
+ var newCookie="pageCount="+counter
+ newCookie += "; expires=" + futdate.toGMTString()
+ window.document.cookie=newCookie
+}
+// -->
+</SCRIPT>
+
+
+ 
+  <div class="inputs">
+
+    <%= f.input :titulo %>
+   <%= f.file_field :contenido %>
+   
+
+    <%= f.input :fechaInicio %>
+
+    <%= f.input :fechaFin %>
+
+    <%= f.input :tarifa %>
+
+  
+	
+<SCRIPT>
+<!--
+insertCounter()
+// -->
+</SCRIPT>
+<br>	
+   <%= f.label :ubications_id %>  
+    <%= collection_select("ubications", "ubications_id" , Ubication.all, "id", "name")%>
+	
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

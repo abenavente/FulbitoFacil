@@ -1,0 +1,23 @@
+<h1>Listing ubications</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ubications.each do |ubication| %>
+  <tr>
+    <td><%= ubication.name %></td>
+    <td><%= link_to 'Show', ubication %></td>
+    <td><%= link_to 'Edit', edit_ubication_path(ubication) %></td>
+    <td><%= link_to 'Destroy', ubication, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ubication', new_ubication_path %>

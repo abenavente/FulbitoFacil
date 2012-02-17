@@ -1,3 +1,28 @@
+.map_container { 
+  border-width: 6px;
+  border-style: solid;
+  border-color: #ccc #ccc #999 #ccc;
+  -webkit-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+  -moz-box-shadow: rgba(64, 64, 64, 0.5) 0 2px 5px;
+  box-shadow: rgba(64, 64, 64, 0.1) 0 2px 5px;
+  padding: 6px auto;
+  position: center;
+  width: 800px;
+}
+
+.gmaps4rails_map {
+  width: 800px;
+  height: 400px;
+}
+
+.bing_map {
+   position: center;
+   top: 20;
+   left: 10;
+   width: 400px;
+   height: 400px;
+   border:#555555 2px solid;
+}
 body
 {
 
@@ -116,6 +141,17 @@ nav ul li a:hover {
     background-color: #9FC54E;
 }
 
+
+#contenedorBasicoLocales{
+
+	color:black;
+	background:white;
+	border: 10px solid white;
+	margin: 0 auto;
+	margin-top: 50px;	
+	width: 810px;	
+	position: relative;
+
 #buttons {
 margin: 10px 0 40px 0;
 float: left;
@@ -144,6 +180,7 @@ padding: 0;
 
 background: #2786C2;
 
+>>>>>>> 45cbd42ea74a77f6897acb14521eec71cfb81493
 }
 
 #contenedorBasico{

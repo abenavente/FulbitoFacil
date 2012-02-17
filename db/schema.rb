@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120217192334) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20120217162724) do
+=======
+<<<<<<< HEAD
+ActiveRecord::Schema.define(:version => 20120217054126) do
+=======
+ActiveRecord::Schema.define(:version => 20120217051547) do
+>>>>>>> 45cbd42ea74a77f6897acb14521eec71cfb81493
+>>>>>>> dd25ea65578fb0f4860e541525e93f6f4c5b0328
+>>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -23,14 +35,23 @@ ActiveRecord::Schema.define(:version => 20120217192334) do
 
   add_index "additional_services", ["service_type_id"], :name => "index_additional_services_on_service_type_id"
 
+<<<<<<< HEAD
   create_table "canchas", :force => true do |t|
     t.string   "name"
     t.integer  "local_id"
     t.text     "caracteristicas"
+=======
+  create_table "comments", :force => true do |t|
+    t.integer  "rating"
+    t.string   "comment"
+    t.integer  "customers_id"
+    t.integer  "sportsfields_id"
+>>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
 
+<<<<<<< HEAD
   add_index "canchas", ["local_id"], :name => "index_canchas_on_local_id"
 
   create_table "canchita", :force => true do |t|
@@ -46,6 +67,10 @@ ActiveRecord::Schema.define(:version => 20120217192334) do
   end
 
   add_index "canchita", ["local_id"], :name => "index_canchita_on_local_id"
+=======
+  add_index "comments", ["customers_id"], :name => "index_comments_on_customers_id"
+  add_index "comments", ["sportsfields_id"], :name => "index_comments_on_sportsfields_id"
+>>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -110,11 +135,18 @@ ActiveRecord::Schema.define(:version => 20120217192334) do
     t.string   "name"
     t.string   "address"
     t.integer  "district_id"
-    t.text     "google_maps_address"
     t.string   "phone"
+<<<<<<< HEAD
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.float    "latitude"
+    t.float    "longitude"
+    t.boolean  "gmaps"
+=======
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.integer  "owner_id"
+>>>>>>> 45cbd42ea74a77f6897acb14521eec71cfb81493
   end
 
   add_index "locals", ["district_id"], :name => "index_locals_on_district_id"
@@ -138,6 +170,20 @@ ActiveRecord::Schema.define(:version => 20120217192334) do
 
   add_index "owners", ["genere_id"], :name => "index_owners_on_genere_id"
   add_index "owners", ["identity_card_type_id"], :name => "index_owners_on_identity_card_type_id"
+
+  create_table "publicities", :force => true do |t|
+    t.string   "titulo"
+    t.string   "contenido"
+    t.date     "fechaInicio"
+    t.date     "fechaFin"
+    t.decimal  "tarifa"
+    t.integer  "nroclick"
+    t.integer  "ubications_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "publicities", ["ubications_id"], :name => "index_publicities_on_ubications_id"
 
   create_table "rates", :force => true do |t|
     t.time     "start_time"
@@ -165,6 +211,7 @@ ActiveRecord::Schema.define(:version => 20120217192334) do
 
   create_table "sportsfields", :force => true do |t|
     t.string   "name"
+    t.integer  "local_id"
     t.text     "feature"
     t.boolean  "monday"
     t.boolean  "tuesday"
@@ -194,11 +241,11 @@ ActiveRecord::Schema.define(:version => 20120217192334) do
     t.string   "imagen_content_type"
     t.integer  "imagen_file_size"
     t.datetime "imagen_updated_at"
-    t.integer  "local_id"
   end
 
   add_index "sportsfields", ["local_id"], :name => "index_sportsfields_on_local_id"
 
+<<<<<<< HEAD
   create_table "tarifas", :force => true do |t|
     t.integer  "cancha_id"
     t.boolean  "promocion"
@@ -213,6 +260,14 @@ ActiveRecord::Schema.define(:version => 20120217192334) do
   add_index "tarifas", ["cancha_id"], :name => "index_tarifas_on_cancha_id"
   add_index "tarifas", ["dia_semana_id"], :name => "index_tarifas_on_dia_semana_id"
 
+=======
+  create_table "ubications", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+>>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
   create_table "usercustomers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
