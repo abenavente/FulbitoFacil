@@ -1,6 +1,6 @@
 
 FulbitoFacil::Application.routes.draw do    
-<<<<<<< HEAD
+
   resources :tarifas
 
   resources :horario_atencions
@@ -10,13 +10,11 @@ FulbitoFacil::Application.routes.draw do
   resources :canchas
 
   resources :canchita
-=======
   resources :publicities
 
   resources :comments
 
   resources :ubications
->>>>>>> 153e6201c3476c08ce9b458b3e1ea1414d87df5a
 
   devise_for :usercustomers, :customers ,:owners 
   

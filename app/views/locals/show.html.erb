@@ -1,27 +1,19 @@
+<section id="contenedorBasicoLocales">
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>Nombre:</b>
   <%= @local.name %>
 </p>
 
 <p>
-  <b>Address:</b>
+  <b>Direccion:</b>
   <%= @local.address %>
 </p>
 
 <p>
-  <b>District:</b>
-<<<<<<< HEAD
-  <%= @local.district.name %>
-</p>
-
-<p>
-  <b>Google maps address:</b>
-  <%= @local.google_maps_address %>
-=======
+  <b>Distrito:</b>
   <%= @local.district.name.to_s %>
->>>>>>> dd25ea65578fb0f4860e541525e93f6f4c5b0328
 </p>
 
 <p>
@@ -29,6 +21,7 @@
   <%= @local.phone %>
 </p>
 
-
+<%= gmaps4rails(@json) %>
 <%= link_to 'Edit', edit_local_path(@local) %> |
 <%= link_to 'Back', locals_path %>
+</section>
