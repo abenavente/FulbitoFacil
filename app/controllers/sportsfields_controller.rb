@@ -3,13 +3,10 @@ class SportsfieldsController < ApplicationController
   # GET /sportsfields
   # GET /sportsfields.json
   def index
-    @sportsfields = Sportsfield.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @sportsfields }
-    end
-  end
+    
+@search = Sportsfield.search(params[:search])   
+    @sportsfields= @search.all  	
+   end
 
   # GET /sportsfields/1
   # GET /sportsfields/1.json

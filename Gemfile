@@ -12,6 +12,7 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 group :development do
 gem 'sqlite3'
 gem 'paperclip'
+gem 'meta_search'
 end
 group :production do
 gem 'pg'
