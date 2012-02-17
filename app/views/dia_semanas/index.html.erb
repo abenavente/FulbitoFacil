@@ -1,0 +1,23 @@
+<h1>Listing dia_semanas</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dia_semanas.each do |dia_semana| %>
+  <tr>
+    <td><%= dia_semana.name %></td>
+    <td><%= link_to 'Show', dia_semana %></td>
+    <td><%= link_to 'Edit', edit_dia_semana_path(dia_semana) %></td>
+    <td><%= link_to 'Destroy', dia_semana, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dia semana', new_dia_semana_path %>

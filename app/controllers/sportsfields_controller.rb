@@ -4,9 +4,17 @@ class SportsfieldsController < ApplicationController
   # GET /sportsfields.json
   def index
     
-@search = Sportsfield.search(params[:search])   
+    @search = Sportsfield.search(params[:search])   
     @sportsfields= @search.all  	
-   end
+
+ end
+  def canchitasLocal
+    
+    @search = Sportsfield.where(:local_id => params[:id])     
+    @sportsfields= @search.all    
+
+ end
+
 
   # GET /sportsfields/1
   # GET /sportsfields/1.json

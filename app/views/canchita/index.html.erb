@@ -1,0 +1,31 @@
+<section id="contenedorBasico">
+<h1>Listing canchita</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Local</th>
+    <th>Caracteristicas</th>
+    <th>Foto</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @canchita.each do |canchitum| %>
+  <tr>
+    <td><%= canchitum.name %></td>
+    <td><%= canchitum.local %></td>
+    <td><%= canchitum.caracteristicas %></td>
+    <td><%= canchitum.foto %></td>
+    <td><%= link_to 'Show', canchitum %></td>
+    <td><%= link_to 'Edit', edit_canchitum_path(canchitum) %></td>
+    <td><%= link_to 'Destroy', canchitum, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Canchitum', new_canchitum_path %>
+</section>

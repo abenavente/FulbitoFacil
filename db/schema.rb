@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217051547) do
+ActiveRecord::Schema.define(:version => 20120217192334) do
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -22,6 +22,30 @@ ActiveRecord::Schema.define(:version => 20120217051547) do
   end
 
   add_index "additional_services", ["service_type_id"], :name => "index_additional_services_on_service_type_id"
+
+  create_table "canchas", :force => true do |t|
+    t.string   "name"
+    t.integer  "local_id"
+    t.text     "caracteristicas"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
+
+  add_index "canchas", ["local_id"], :name => "index_canchas_on_local_id"
+
+  create_table "canchita", :force => true do |t|
+    t.string   "name"
+    t.integer  "local_id"
+    t.text     "caracteristicas"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+  end
+
+  add_index "canchita", ["local_id"], :name => "index_canchita_on_local_id"
 
   create_table "customers", :force => true do |t|
     t.string   "name"
@@ -46,6 +70,12 @@ ActiveRecord::Schema.define(:version => 20120217051547) do
   add_index "customers", ["genere_id"], :name => "index_customers_on_genere_id"
   add_index "customers", ["identity_card_type_id"], :name => "index_customers_on_identity_card_type_id"
 
+  create_table "dia_semanas", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "districts", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
@@ -57,6 +87,18 @@ ActiveRecord::Schema.define(:version => 20120217051547) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "horario_atencions", :force => true do |t|
+    t.integer  "cancha_id"
+    t.integer  "dia_semana_id"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "horario_atencions", ["cancha_id"], :name => "index_horario_atencions_on_cancha_id"
+  add_index "horario_atencions", ["dia_semana_id"], :name => "index_horario_atencions_on_dia_semana_id"
 
   create_table "identity_card_types", :force => true do |t|
     t.string   "name"
@@ -156,6 +198,20 @@ ActiveRecord::Schema.define(:version => 20120217051547) do
   end
 
   add_index "sportsfields", ["local_id"], :name => "index_sportsfields_on_local_id"
+
+  create_table "tarifas", :force => true do |t|
+    t.integer  "cancha_id"
+    t.boolean  "promocion"
+    t.integer  "dia_semana_id"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "price"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "tarifas", ["cancha_id"], :name => "index_tarifas_on_cancha_id"
+  add_index "tarifas", ["dia_semana_id"], :name => "index_tarifas_on_dia_semana_id"
 
   create_table "usercustomers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

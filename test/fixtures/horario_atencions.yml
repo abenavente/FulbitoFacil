@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cancha: 
+  dia_semana: 
+  start_time: 2012-02-17 14:16:27
+  end_time: 2012-02-17 14:16:27
+
+two:
+  cancha: 
+  dia_semana: 
+  start_time: 2012-02-17 14:16:27
+  end_time: 2012-02-17 14:16:27

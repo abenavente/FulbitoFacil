@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cancha:</b>
+  <%= @tarifa.cancha %>
+</p>
+
+<p>
+  <b>Promocion:</b>
+  <%= @tarifa.promocion %>
+</p>
+
+<p>
+  <b>Dia semana:</b>
+  <%= @tarifa.dia_semana %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @tarifa.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @tarifa.end_time %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @tarifa.price %>
+</p>
+
+
+<%= link_to 'Edit', edit_tarifa_path(@tarifa) %> |
+<%= link_to 'Back', tarifas_path %>

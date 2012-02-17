@@ -1,0 +1,33 @@
+<h1>Listado de Tarifas</h1>
+
+<table>
+  <tr>
+    
+    <th>Promocion</th>
+    <th>Dia semana</th>
+    <th>Start time</th>
+    <th>End time</th>
+    <th>Price</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tarifas.each do |tarifa| %>
+  <tr>
+    
+    <td><%= tarifa.promocion %></td>
+    <td><%= tarifa.dia_semana.name %></td>
+    <td><%= tarifa.start_time %></td>
+    <td><%= tarifa.end_time %></td>
+    <td><%= tarifa.price %></td>
+    <td><%= link_to 'Show', tarifa %></td>
+    <td><%= link_to 'Edit', edit_tarifa_path(tarifa) %></td>
+    <td><%= link_to 'Destroy', tarifa, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tarifa', new_tarifa_path %>

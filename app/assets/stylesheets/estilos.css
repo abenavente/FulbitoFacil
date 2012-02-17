@@ -20,7 +20,8 @@ footer
 }
 form {
 	width: 280px;
-	margin :0 auto;
+
+	padding: 0 auto;
 	display: block;
 }
 header
@@ -41,7 +42,7 @@ header
 
 h2
 {
-	color: black;
+	color: white;
 	padding-bottom: 5px;	
 	vertical-align:baseline;
 }
@@ -261,6 +262,7 @@ background: #2786C2;
 }
 #contenedor2 article
 {
+    color:white;
 	border-radius: 0.5em;
 	padding-right: 10px;
 	padding-left: 10px;

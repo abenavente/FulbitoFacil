@@ -1,0 +1,29 @@
+<section id="contenedorBasico">
+<h1>Horario de Atencion</h1>
+
+<table>
+  <tr>
+    <th>Dia de la semana</th>
+    <th>Desde</th>
+    <th>Hasta</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @horario_atencions.each do |horario_atencion| %>
+  <tr>
+    <td><%= horario_atencion.dia_semana.name %></td>
+    <td><%= horario_atencion.start_time %></td>
+    <td><%= horario_atencion.end_time %></td>
+    <td><%= link_to 'Mostrar', horario_atencion %></td>
+    <td><%= link_to 'Editar', edit_horario_atencion_path(horario_atencion) %></td>
+    <td><%= link_to 'Eliminar', horario_atencion, confirm: 'Estas Seguro?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Horario atencion', new_horario_atencion_path %>
+</section>

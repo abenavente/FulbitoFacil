@@ -1,0 +1,22 @@
+<section id="contenedorBasico">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @cancha.name %>
+</p>
+
+<p>
+  <b>Local:</b>
+  <%= @cancha.local %>
+</p>
+
+<p>
+  <b>Caracteristicas:</b>
+  <%= @cancha.caracteristicas %>
+</p>
+
+
+<%= link_to 'Edit', edit_cancha_path(@cancha) %> |
+<%= link_to 'Back', canchas_path %>
+</section>

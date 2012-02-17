@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cancha:</b>
+  <%= @horario_atencion.cancha %>
+</p>
+
+<p>
+  <b>Dia semana:</b>
+  <%= @horario_atencion.dia_semana %>
+</p>
+
+<p>
+  <b>Start time:</b>
+  <%= @horario_atencion.start_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @horario_atencion.end_time %>
+</p>
+
+
+<%= link_to 'Edit', edit_horario_atencion_path(@horario_atencion) %> |
+<%= link_to 'Back', horario_atencions_path %>

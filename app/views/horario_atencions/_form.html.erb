@@ -1,0 +1,19 @@
+<%= simple_form_for(@horario_atencion) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.association :cancha %>
+
+    <%= f.association :dia_semana %>
+
+    <%= f.input :start_time %>
+
+    <%= f.input :end_time %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

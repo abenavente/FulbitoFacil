@@ -1,5 +1,15 @@
 
 FulbitoFacil::Application.routes.draw do    
+  resources :tarifas
+
+  resources :horario_atencions
+
+  resources :dia_semanas
+
+  resources :canchas
+
+  resources :canchita
+
   devise_for :usercustomers, :customers ,:owners 
   
 
@@ -35,9 +45,11 @@ FulbitoFacil::Application.routes.draw do
   match "localesOwner/:id" => "locals#index", :as =>'localesOwner'
   match "panel" => "vistasGenerales#panel"
   match "reservas" => "customers#new"
+  match "canchitasLocal/:id" => "canchas#index", :as =>'canchitasLocal'
+  match "tarifasCanchita/:id" => "tarifas#index", :as =>'tarifasCanchita'
+  match "horarioCanchita/:id" => "horarioAtencions#index", :as =>'horarioCanchita'
   
   #match "inicioSesion" => "devise/sessions#new"
-
 
   get "sign_up" => "customers#new", :as => "sign_up"
 

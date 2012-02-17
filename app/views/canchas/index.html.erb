@@ -1,0 +1,30 @@
+<section id="contenedorBasico">
+<h1>Listado de Canchas </h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Caracteristicas</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @canchas.each do |cancha| %>
+  <tr>
+    <td><%= cancha.name %></td>\
+    <td><%= cancha.caracteristicas %></td>
+    <td><%= link_to 'Mostrar', cancha %></td>
+    <td><%= link_to 'Editar', edit_cancha_path(cancha) %></td>
+    <td><%= link_to 'Tarifas', tarifasCanchita_path(cancha.id) %></td>
+    <td><%= link_to 'Horario', horarioCanchita_path(cancha.id) %></td>
+    <td><%= link_to 'Eliminar', cancha, confirm: 'Estas Seguro?', method: :delete %></td>
+  
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Nueva Cancha', new_cancha_path %>
+</section>

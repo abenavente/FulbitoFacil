@@ -1,5 +1,5 @@
 class Sportsfield < ActiveRecord::Base
-has_attached_file :imagen, :styles => { :small => "150x150>"},
+has_attached_file :imagen, :styles => { :medium => "300x300>",:small => "150x150>"},
 				   :url => "/assets/sportfields/:id/:style/:basename.extension",
 				   :path => ":rails_root/public//assets/sportfields/:id/:style/:basename.extension"
 

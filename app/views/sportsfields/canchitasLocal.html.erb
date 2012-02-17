@@ -1,0 +1,113 @@
+<section id="contenedorBasico">
+
+  
+
+<h1>Lista de Campos deportivos</h1>
+
+<table border="2">
+  <tr>
+    <th>Nombre              </th>
+    <th>Local               </th>
+    
+	<!-- <th>Caracteristica</th> -->
+    <th>Lun</th>
+	<th>Inicio</th>
+    <th>Fin</th>
+    <th>Mar</th>
+	<th>Inicio</th>
+    <th>Fin</th>
+    <th>Mie</th>
+	<th>Inicio</th>
+    <th>Fin</th>
+    <th>Jue</th>
+	<th>Inicio</th>
+    <th>Fin</th>
+    <th>Vie</th>
+	<th>Inicio</th>
+    <th>Fin</th>
+    <th>Sab</th>    
+	<th>Inicio</th>
+    <th>Fin</th>
+	<th>Dom</th>    
+    <th>Inicio</th>
+    <th>Fin</th>
+    <!--<td><th></th>-->
+  <!--<td>  <th></th>-->
+   <!--<td> <th></th>-->
+  </tr>
+  
+
+<% @sportsfields.each do |sportsfield| %>
+  <tr>
+    <td><%= sportsfield.name %></td>
+    <td><%= sportsfield.local.name.to_s %></td>
+    <!-- <td><%= sportsfield.feature %></td>-->
+    	
+	<td> <%= if sportsfield.monday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	
+	<td><%= sportsfield.mon_start_time.strftime("%H:%M") %></td> 
+    <td><%= sportsfield.mon_end_time.strftime("%H:%M") %></td>
+    </t>
+	<td> <%= if sportsfield.tuesday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	 <td><%= sportsfield.tue_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.tue_end_time.strftime("%H:%M") %></td>
+   <td> <%= if sportsfield.wednesday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	 <td><%= sportsfield.wed_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.wed_end_time.strftime("%H:%M") %></td>
+   
+	<td> <%= if sportsfield.thursday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	<td><%= sportsfield.thu_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.thu_end_time.strftime("%H:%M") %></td>
+	
+	<td> <%= if sportsfield.friday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	<td><%= sportsfield.fri_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.fri_end_time.strftime("%H:%M") %></td>
+   
+	<td> <%= if sportsfield.saturday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+	<td><%= sportsfield.sat_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.sat_end_time.strftime("%H:%M") %></td>
+    
+	<td> <%= if sportsfield.sunday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+    <td><%= sportsfield.sun_start_time.strftime("%H:%M") %></td>
+    <td><%= sportsfield.sun_end_start.strftime("%H:%M") %></td>
+    
+		 <td><%= link_to image_tag("ver.gif", :border=>0), sportsfield  %></td>
+	 <!--<td><%= link_to image_tag("editar.gif", :border=>0), edit_sportsfield_path(sportsfield) %></td>-->
+	 <!--<td><%= link_to image_tag("icon_eliminar.png", :border=>0), sportsfield, confirm: 'Are you sure?', method: :delete %></td>-->
+ 
+ </tr>
+<% end %>
+   </table>
+ 
+ 
+ <!--Busqueda por caracteristica</td>--> 
+ <%= link_to 'Nueva Canchita', new_sportsfield_path %>
+  </section> 
