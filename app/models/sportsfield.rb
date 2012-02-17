@@ -7,4 +7,6 @@ validates_attachment_presence :imagen
 validates_attachment_size :imagen, :less_than => 5.megabytes  				   
 validates_attachment_content_type :imagen, :content_type => ['image/jpg', 'image/png'] 				   
 belongs_to :local
+validates_presence_of :name, :local, :feature
+
 end

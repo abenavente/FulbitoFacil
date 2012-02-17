@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20120217051547) do
-=======
-ActiveRecord::Schema.define(:version => 20120217045531) do
->>>>>>> 4e3fbdc81076ffe8e660a3629b6ac6301022e3ee
 
   create_table "additional_services", :force => true do |t|
     t.integer  "service_type_id"
@@ -167,8 +163,6 @@ ActiveRecord::Schema.define(:version => 20120217045531) do
 
   add_index "sportsfields", ["local_id"], :name => "index_sportsfields_on_local_id"
 
-<<<<<<< HEAD
-=======
   create_table "usercustomers", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
     t.string   "encrypted_password",     :default => "", :null => false
@@ -187,5 +181,4 @@ ActiveRecord::Schema.define(:version => 20120217045531) do
   add_index "usercustomers", ["email"], :name => "index_usercustomers_on_email", :unique => true
   add_index "usercustomers", ["reset_password_token"], :name => "index_usercustomers_on_reset_password_token", :unique => true
 
->>>>>>> 4e3fbdc81076ffe8e660a3629b6ac6301022e3ee
 end
