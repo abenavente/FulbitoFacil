@@ -1,10 +1,15 @@
 <section id="contenedorBasico">
+
+  
+
 <h1>Lista de Campos deportivos</h1>
-<table border="1">
+
+<table border="2">
   <tr>
-    <th>Nombre</th>
-    <th>Local</th>
-    <!-- <th>Caracteristica</th> -->
+    <th>Nombre              </th>
+    <th>Local               </th>
+    
+	<!-- <th>Caracteristica</th> -->
     <th>Lun</th>
 	<th>Inicio</th>
     <th>Fin</th>
@@ -26,15 +31,16 @@
 	<th>Dom</th>    
     <th>Inicio</th>
     <th>Fin</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <!--<td><th></th>-->
+  <!--<td>  <th></th>-->
+   <!--<td> <th></th>-->
   </tr>
+  
 
 <% @sportsfields.each do |sportsfield| %>
   <tr>
     <td><%= sportsfield.name %></td>
-    <td><%= sportsfield.local %></td>
+    <td><%= sportsfield.local.name.to_s %></td>
     <!-- <td><%= sportsfield.feature %></td>-->
     	
 	<td> <%= if sportsfield.monday == true
@@ -45,7 +51,8 @@
 	
 	<td><%= sportsfield.mon_start_time.strftime("%H:%M") %></td> 
     <td><%= sportsfield.mon_end_time.strftime("%H:%M") %></td>
-    <td> <%= if sportsfield.tuesday == true
+    </t>
+	<td> <%= if sportsfield.tuesday == true
       image_tag("check.png", :border=>0)
       else 
       image_tag("icon_eliminar.png", :border=>0)
@@ -92,18 +99,34 @@
     <td><%= sportsfield.sun_start_time.strftime("%H:%M") %></td>
     <td><%= sportsfield.sun_end_start.strftime("%H:%M") %></td>
     
-	 <td><%= link_to image_tag("ver.gif", :border=>0), sportsfield  %></td>
-	 <td><%= link_to image_tag("editar.gif", :border=>0), edit_sportsfield_path(sportsfield) %></td>
-	 <td><%= link_to image_tag("icon_eliminar.png", :border=>0), sportsfield, confirm: 'Are you sure?', method: :delete %></td>
+		 <td><%= link_to image_tag("ver.gif", :border=>0), sportsfield  %></td>
+	 <!--<td><%= link_to image_tag("editar.gif", :border=>0), edit_sportsfield_path(sportsfield) %></td>-->
+	 <!--<td><%= link_to image_tag("icon_eliminar.png", :border=>0), sportsfield, confirm: 'Are you sure?', method: :delete %></td>-->
  
-     
-
-  </tr>
+ </tr>
 <% end %>
    </table>
-   
-  
-<br />
-<%= link_to 'Crear Campo', new_sportsfield_path %>
+ 
+ 
+ <!--Busqueda por caracteristica</td>--> 
+ <%= form_for @search do |f| %>   
+ <p>   
+<%= f.label :Caracteristica%>   
+<%= f.text_field :feature_contains %>   
+</p>   
+<p class="button"><%= f.submit "Buscar" %> </p>   
+<% end %>  
 
-</section>
+<!--Busqueda por NOmbre</td>--> 
+ <%= form_for @search do |f| %>   
+ <p>   
+<%= f.label :Nombre%>   
+<%= f.text_field :name_contains %>   
+</p>   
+<p class="button"><%= f.submit "Buscar" %> </p>   
+<% end %> 
+
+<br />
+<!--<td><%= link_to 'Crear Campo', new_sportsfield_path %>-->
+
+  </section>   

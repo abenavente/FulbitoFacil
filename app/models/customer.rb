@@ -3,7 +3,7 @@ class Customer < ActiveRecord::Base
   belongs_to :identity_card_type
   belongs_to :district
   
-devise :database_authenticatable, :timeoutable, :timeoutable,:timeout_in => 20.seconds
+devise :database_authenticatable, :timeoutable, :timeoutable,:timeout_in => 30.seconds
   
   # validates_presence_of :name, :lastname, :email, :password  	
   # validates_uniqueness_of :email

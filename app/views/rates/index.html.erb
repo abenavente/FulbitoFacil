@@ -16,9 +16,7 @@
     <th>Vie</th>
     <th>Sab</th>
     <th>Dom</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    
   </tr>
 
 <% @rates.each do |rate| %>
@@ -29,22 +27,59 @@
     <td><%= rate.promocio %></td>
     <td><%= rate.start_date %></td>
     <td><%= rate.end_date %></td>
-    <td><%= rate.monday %></td>
-    <td><%= rate.tuesday %></td>
-    <td><%= rate.wednesday %></td>
-    <td><%= rate.thursday %></td>
-    <td><%= rate.friday %></td>
-    <td><%= rate.saturday %></td>
-    <td><%= rate.sunday %></td>
+   
+<td> <%= if rate.monday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>
+
+<td> <%= if rate.tuesday  == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>	 
+	 
+<td> <%= if rate.wednesday== true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>  
+
+	 <td> <%= if rate.thursday== true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>  
+
+<td> <%= if rate.friday == true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>  	 
+	
+<td> <%= if rate.saturday== true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>  
+
+<td> <%= if rate.sunday== true
+      image_tag("check.png", :border=>0)
+      else 
+      image_tag("icon_eliminar.png", :border=>0)
+     end %> </td>  	 
+   
 	<td><%= link_to image_tag("ver.gif", :border=>0), rate  %></td>
-	 <td><%= link_to image_tag("editar.gif", :border=>0), edit_rate_path(rate) %></td>
-	 <td><%= link_to image_tag("icon_eliminar.png", :border=>0), rate, confirm: 'Are you sure?', method: :delete %></td>
+	 <!--<td><%= link_to image_tag("editar.gif", :border=>0), edit_rate_path(rate) %></td>-->
+	 <!--<td><%= link_to image_tag("icon_eliminar.png", :border=>0), rate, confirm: 'Are you sure?', method: :delete %></td>-->
     
 	
 	
   </tr>
 <% end %>
 </table>
+
 
 <br />
 

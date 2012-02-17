@@ -60,8 +60,16 @@
 <%= link_to 'Edit', edit_customer_path(@customer) %>  
 </section>
 <section id="datosOpcionesPanel">
-  <P id="bazul"><%= link_to "buscarCanchas", buscarCanchas_path %></p>
-  <P id="bazul"><%= link_to "reservaActual", reservaActual_path %></p>
-
+      <div id="buttons">
+                        <div id="button_left" align="center">
+                            <%= link_to "Canchitas", sportsfields_path %>
+                        </div>
+                        <div id="button_left" align="center">
+                             <%= link_to "Historial", sportsfields_path %>
+                        </div>
+                        
+                        
+                        <div class="clear"></div>
+                    </div>
 </section>
 </section>
