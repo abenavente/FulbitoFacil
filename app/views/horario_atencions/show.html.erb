@@ -2,22 +2,22 @@
 
 <p>
   <b>Cancha:</b>
-  <%= @horario_atencion.cancha %>
+  <%= @horario_atencion.cancha.name %>
 </p>
 
 <p>
   <b>Dia semana:</b>
-  <%= @horario_atencion.dia_semana %>
+  <%= @horario_atencion.dia_semana.name %>
 </p>
 
 <p>
   <b>Start time:</b>
-  <%= @horario_atencion.start_time %>
+  <%= @horario_atencion.start_time.strftime("%H:%M") %>
 </p>
 
 <p>
   <b>End time:</b>
-  <%= @horario_atencion.end_time %>
+  <%= @horario_atencion.end_time.strftime("%H:%M") %>
 </p>
 
 

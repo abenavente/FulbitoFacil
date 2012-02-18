@@ -18,12 +18,12 @@
     
     <td><%= tarifa.promocion %></td>
     <td><%= tarifa.dia_semana.name %></td>
-    <td><%= tarifa.start_time %></td>
-    <td><%= tarifa.end_time %></td>
+    <td><%= tarifa.start_time.strftime("%H:%M") %></td>
+    <td><%= tarifa.end_time.strftime("%H:%M") %></td>
     <td><%= tarifa.price %></td>
-    <td><%= link_to 'Show', tarifa %></td>
-    <td><%= link_to 'Edit', edit_tarifa_path(tarifa) %></td>
-    <td><%= link_to 'Destroy', tarifa, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Mostrar', tarifa %></td>
+    <td><%= link_to 'Editar', edit_tarifa_path(tarifa) %></td>
+    <td><%= link_to 'Eliminar', tarifa, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

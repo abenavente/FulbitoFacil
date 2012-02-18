@@ -1,3 +1,4 @@
+<section id="cotenedorBasico">
 <%= simple_form_for(@local) do |f| %>
   <%= f.error_notification %>
 
@@ -12,4 +13,6 @@
   <div class="actions">
     <%= f.submit 'Crear Local'  %>
   </div>
+  <%= gmaps4rails(@json) %>
 <% end %>
+</section>

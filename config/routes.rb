@@ -1,6 +1,8 @@
 
 FulbitoFacil::Application.routes.draw do    
 
+  resources :alquilers
+
   resources :tarifas
 
   resources :horario_atencions
@@ -44,7 +46,8 @@ FulbitoFacil::Application.routes.draw do
   match "registro" => "vistasGenerales#registro"
   match "registroDueno" => "owners#new"
   match "registroJugador" => "customers#new"
-  match "buscarCanchas" => "sportsfields#index"
+  match "buscarCanchas" => "canchas#alquilar"
+  match "reservarCanchas" => "alquilers#new"
   match "reservaActual" => "customers#new"
   match "panelJugador/:id" => "customers#show", :as =>'panelJugador'
   match "panelOwner/:id" => "owners#show", :as =>'panelOwner'
@@ -54,6 +57,7 @@ FulbitoFacil::Application.routes.draw do
   match "canchitasLocal/:id" => "canchas#index", :as =>'canchitasLocal'
   match "tarifasCanchita/:id" => "tarifas#index", :as =>'tarifasCanchita'
   match "horarioCanchita/:id" => "horarioAtencions#index", :as =>'horarioCanchita'
+  match "reservasJugador/:id" => "alquilers#alqJugador", :as =>'reservasJugador'
   
   #match "inicioSesion" => "devise/sessions#new"
 

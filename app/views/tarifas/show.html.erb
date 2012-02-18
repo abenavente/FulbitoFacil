@@ -17,12 +17,12 @@
 
 <p>
   <b>Start time:</b>
-  <%= @tarifa.start_time %>
+  <%= @tarifa.start_time.strftime("%H:%M") %>
 </p>
 
 <p>
   <b>End time:</b>
-  <%= @tarifa.end_time %>
+  <%= @tarifa.end_time.strftime("%H:%M") %>
 </p>
 
 <p>

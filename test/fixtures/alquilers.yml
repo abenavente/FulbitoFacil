@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  cancha: 
+  customer: 
+  dia_semana: 
+  star_time: 2012-02-17 18:12:27
+  end_time: 2012-02-17 18:12:27
+
+two:
+  cancha: 
+  customer: 
+  dia_semana: 
+  star_time: 2012-02-17 18:12:27
+  end_time: 2012-02-17 18:12:27

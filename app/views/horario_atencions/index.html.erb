@@ -14,8 +14,8 @@
 <% @horario_atencions.each do |horario_atencion| %>
   <tr>
     <td><%= horario_atencion.dia_semana.name %></td>
-    <td><%= horario_atencion.start_time %></td>
-    <td><%= horario_atencion.end_time %></td>
+    <td><%= horario_atencion.start_time.strftime("%H:%M") %></td>
+    <td><%= horario_atencion.end_time.strftime("%H:%M") %></td>
     <td><%= link_to 'Mostrar', horario_atencion %></td>
     <td><%= link_to 'Editar', edit_horario_atencion_path(horario_atencion) %></td>
     <td><%= link_to 'Eliminar', horario_atencion, confirm: 'Estas Seguro?', method: :delete %></td>

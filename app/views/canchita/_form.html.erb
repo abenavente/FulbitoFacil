@@ -1,5 +1,5 @@
-<%= simple_form_for(@canchitum) do |f| %>
-  <%= f.error_notification %>
+<%= simple_form_for(@canchitum, :url => canchita_path,  
+:html => { :multipart => true } ) do |f| %>
 
   <div class="inputs">
 
@@ -9,7 +9,7 @@
 
     <%= f.input :caracteristicas %>
 
-    
+    <%= f.file_field  :foto %>
 
   </div>
 

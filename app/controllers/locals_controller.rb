@@ -29,7 +29,7 @@ class LocalsController < ApplicationController
   # GET /locals/1.json
   def show
     @local = Local.find(params[:id])
-
+    @json = Local.all.to_gmaps4rails
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @local }

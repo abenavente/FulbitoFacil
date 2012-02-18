@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Cancha:</b>
+  <%= @alquiler.cancha %>
+</p>
+
+<p>
+  <b>Customer:</b>
+  <%= @alquiler.customer %>
+</p>
+
+<p>
+  <b>Dia semana:</b>
+  <%= @alquiler.dia_semana %>
+</p>
+
+<p>
+  <b>Star time:</b>
+  <%= @alquiler.star_time %>
+</p>
+
+<p>
+  <b>End time:</b>
+  <%= @alquiler.end_time %>
+</p>
+
+
+<%= link_to 'Edit', edit_alquiler_path(@alquiler) %> |
+<%= link_to 'Back', alquilers_path %>

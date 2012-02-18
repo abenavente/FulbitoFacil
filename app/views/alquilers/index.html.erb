@@ -1,0 +1,31 @@
+<h1>Lista de alquilers</h1>
+
+<table>
+  <tr>
+    <th>Cancha</th>
+    <th>Customer</th>
+    <th>Dia semana</th>
+    <th>Star time</th>
+    <th>End time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @alquilers.each do |alquiler| %>
+  <tr>
+    <td><%= alquiler.cancha.name %></td>
+    <td><%= alquiler.customer.name %></td>
+    <td><%= alquiler.dia_semana.name %></td>
+    <td><%= alquiler.star_time.strftime("%H:%M") %></td>
+    <td><%= alquiler.end_time.strftime("%H:%M") %></td>
+    <td><%= link_to 'Show', alquiler %></td>
+    <td><%= link_to 'Edit', edit_alquiler_path(alquiler) %></td>
+    <td><%= link_to 'Destroy', alquiler, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Alquiler', new_alquiler_path %>

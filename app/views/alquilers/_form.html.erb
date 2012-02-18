@@ -1,0 +1,21 @@
+<%= simple_form_for(@alquiler) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+
+    <%= f.association :cancha %>
+
+    <%= f.association :customer %>
+
+    <%= f.association :dia_semana %>
+
+    <%= f.input :star_time %>
+
+    <%= f.input :end_time %>
+
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

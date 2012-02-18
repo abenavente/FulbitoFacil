@@ -15,12 +15,12 @@
 
 <p>
   <b>Genere:</b>
-  <%= @customer.genere %>
+  <%= @customer.genere.name %>
 </p>
 
 <p>
   <b>Identity card type:</b>
-  <%= @customer.identity_card_type %>
+  <%= @customer.identity_card_type.name %>
 </p>
 
 <p>
@@ -35,7 +35,7 @@
 
 <p>
   <b>Distrito:</b>
-  <%= @customer.district %>
+  <%= @customer.district.name %>
 </p>
 
 <p>
@@ -62,10 +62,10 @@
 <section id="datosOpcionesPanel">
       <div id="buttons">
                         <div id="button_left" align="center">
-                            <%= link_to "Canchitas", sportsfields_path %>
+                            <%= link_to "Canchitas", buscarCanchas_path %>
                         </div>
                         <div id="button_left" align="center">
-                             <%= link_to "Historial", sportsfields_path %>
+                             <%= link_to "Historial", reservasJugador_path%>
                         </div>
                         
                         

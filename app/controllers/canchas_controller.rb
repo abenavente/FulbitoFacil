@@ -81,4 +81,9 @@ class CanchasController < ApplicationController
       format.json { head :no_content }
     end
   end
+  def alquilar
+    @search = Cancha.search(params[:search])     
+    @canchas= @search.all    
+
+  end
 end
