@@ -49,10 +49,30 @@ const monthLabel = (key, opts = { month: 'long', year: 'numeric' }) => {
 
 /* ---------- Carga ---------- */
 
+/** Enlace de conexión generado desde la hoja: …/#conectar=<url /exec>&token=<token> */
+async function connectFromLink() {
+  const params = new URLSearchParams(location.hash.slice(1));
+  const url = params.get('conectar');
+  const token = params.get('token');
+  if (!url || !token) return;
+  history.replaceState(null, '', location.pathname + location.search); // no dejar el token a la vista
+  try {
+    const res = await withLoader(() => testConnection(url, token));
+    state.settings = { url, token };
+    saveSettings(state.settings);
+    toast(`Conectada a “${res.sheet}” ✅`);
+  } catch {
+    // Dejamos los datos en Ajustes para reintentar con "Conectar".
+    state.pendingConn = { url, token };
+  }
+}
+
 async function init() {
-  state.backend = createBackend(state.settings);
   bindEvents();
+  await connectFromLink();
+  state.backend = createBackend(state.settings);
   await reload();
+  if (state.pendingConn) goto('settings');
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 
@@ -247,8 +267,8 @@ function renderCategories(a) {
 }
 
 function renderSettings() {
-  $('#set-url').value = state.settings.url || '';
-  $('#set-token').value = state.settings.token || '';
+  $('#set-url').value = state.settings.url || state.pendingConn?.url || '';
+  $('#set-token').value = state.settings.token || state.pendingConn?.token || '';
   $('#set-name').value = state.data.config?.nombre || '';
   $('#set-currency').value = state.data.config?.moneda || 'S/';
   $('#demo-card').hidden = !state.backend.isDemo;
@@ -544,6 +564,7 @@ function bindEvents() {
     try {
       const res = await withLoader(() => testConnection(url, token));
       state.settings = { url, token };
+      state.pendingConn = null;
       saveSettings(state.settings);
       state.backend = createBackend(state.settings);
       toast(`Conectado a “${res.sheet}” ✅`);

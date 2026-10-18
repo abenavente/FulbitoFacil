@@ -259,7 +259,7 @@ button, input, select { font: inherit; color: inherit; }
 
 .amount-input { display: flex; align-items: baseline; gap: 8px; justify-content: center; padding: 10px 0; }
 .amount-input .cur { font-size: 22px; }
-.amount-input input { border: 0; background: transparent; font-family: 'Fraunces', Georgia, serif; font-size: 44px; font-weight: 600; width: 5ch; field-sizing: content; min-width: 3ch; max-width: 240px; outline: none; color: var(--text); }
+.amount-input input { border: 0; background: transparent; font-family: 'Fraunces', Georgia, serif; font-size: 44px; font-weight: 600; width: 6.5ch; max-width: 240px; outline: none; color: var(--text); }
 .cat-chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .cat-chip { border: 1.5px solid var(--border); background: transparent; border-radius: 999px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; }
 .cat-chip.active { border-color: var(--cat); background: color-mix(in srgb, var(--cat) 20%, transparent); }

@@ -20,37 +20,30 @@ gastos-app/
 ├── apps-script/   Backend: se pega en la Google Sheet (Apps Script)
 │   ├── Code.gs
 │   └── appsscript.json
+├── instalador/    Paquete listo: zip de la web + Code.gs (npm run empaquetar)
 ├── web/           La app (HTML/CSS/JS sin dependencias ni build)
 └── tests/         Tests del motor de recomendaciones y del lector de vouchers
 ```
 
-## 1. Preparar la Google Sheet (5 minutos)
+## Instalación
 
-1. Crea una Google Sheet nueva (p. ej. "Mis Gastos").
-2. Menú **Extensiones → Apps Script**.
-3. Borra el contenido de `Código.gs` y pega todo [`apps-script/Code.gs`](apps-script/Code.gs). Guarda.
-4. (Opcional) En ⚙️ *Configuración del proyecto* activa "Mostrar archivo de manifiesto" y pega [`appsscript.json`](apps-script/appsscript.json) (ajusta `timeZone` si no estás en Lima).
-5. Arriba elige la función **`setup`** y pulsa **Ejecutar**. Acepta los permisos (Sheets y Drive).
-   Se crean las hojas **Gastos**, **Categorias**, **Config** y **Resumen** (con fórmulas del mes).
-6. Abre **Registros de ejecución** y copia el **token** que aparece. (Si lo pierdes, ejecuta `verToken`.)
-7. **Implementar → Nueva implementación → Tipo: Aplicación web**
-   - Ejecutar como: **Yo**
-   - Quién tiene acceso: **Cualquier usuario**
-   - Copia la **URL** que termina en `/exec`.
+El manual para usuarias (paso a paso, con iPhone) está aparte; esto es el resumen técnico.
 
-> El token impide que otras personas lean o escriban en la hoja aunque conozcan la URL. No lo compartas.
-> Si cambias `Code.gs` después, usa **Implementar → Administrar implementaciones → Editar → Nueva versión** para que la URL siga siendo la misma.
+**Una sola vez, quien administra:**
+1. `npm run empaquetar` → genera `instalador/mis-gastos-web.zip` e `instalador/Code.gs`.
+2. Arrastra el zip a [app.netlify.com/drop](https://app.netlify.com/drop) (con cuenta gratis, para que no se borre). Netlify da la dirección, p. ej. `https://mis-gastos.netlify.app/`. Sirve cualquier hosting estático con HTTPS.
+3. Escribe esa dirección en `APP_URL` al inicio de `instalador/Code.gs` y comparte ese archivo.
 
-## 2. Publicar la app
+**Cada persona (tiene su propia hoja y sus datos):**
+1. Google Sheet nueva → **Extensiones → Apps Script** → pega `Code.gs` → guarda → ejecuta `onOpen` una vez (acepta permisos).
+2. En la hoja: **💜 Mis Gastos → 1. Instalar / reparar hojas**.
+3. Apps Script: **Implementar → Nueva implementación → Aplicación web** (Ejecutar como: Yo · Acceso: Cualquier usuario).
+4. En la hoja: **💜 Mis Gastos → 2. Conectar mi celular (QR)** → pega la URL `/exec` → escanea el QR con el celular.
+   El enlace (`APP_URL#conectar=<exec>&token=<token>`) configura la app y se borra de la barra de direcciones.
+5. iPhone: Safari → Compartir → **Agregar a inicio**. Android: Chrome → **Instalar app**.
 
-La carpeta `web/` es estática. Opciones gratuitas: **GitHub Pages**, **Netlify Drop** (arrastrar la carpeta `web/` en app.netlify.com/drop) o **Vercel**. Se necesita HTTPS para la cámara y para instalarla como app.
-
-En el celular abre la URL → menú del navegador → **"Agregar a pantalla de inicio"**.
-
-## 3. Conectar
-
-En la app: **Ajustes → Conexión con Google Sheets** → pega la URL `/exec` y el token → **Conectar**.
-Luego en **Metas** define el tope mensual y la meta de cada categoría.
+> El token impide que otras personas usen la hoja aunque conozcan la URL. El QR y el enlace lo contienen: no se comparten.
+> Si cambias `Code.gs` después: **Implementar → Administrar implementaciones → Editar → Nueva versión** (la URL se mantiene).
 
 ## La hoja de cálculo
 
@@ -68,5 +61,6 @@ Las categorías archivadas no se borran, para no perder el historial.
 
 ```bash
 npm start   # sirve web/ en http://localhost:5173
+npm run empaquetar  # regenera instalador/
 npm test    # tests del análisis y del lector de vouchers (Node 18+)
 ```

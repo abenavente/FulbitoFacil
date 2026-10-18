@@ -2,11 +2,16 @@
  * Mis Gastos — backend en Google Apps Script.
  *
  * Se pega en el editor de Apps Script de la Google Sheet (Extensiones > Apps Script).
- * 1. Ejecuta `setup()` una vez: crea las hojas, las categorías base y el token de acceso.
+ * 1. Ejecuta `setup()` una vez (o menú Mis Gastos > Instalar): crea las hojas,
+ *    las categorías base y el token de acceso.
  * 2. Implementar > Nueva implementación > Aplicación web
  *    (Ejecutar como: Yo · Quién tiene acceso: Cualquier usuario).
- * 3. Copia la URL /exec y el token (Ver > Registros) en Ajustes de la app.
+ * 3. Menú Mis Gastos > Conectar mi celular: muestra un QR que abre la app ya conectada.
  */
+
+// Dirección donde está publicada la app. Quien administra la app la escribe aquí
+// una vez antes de compartir este código; cada persona también puede cambiarla en el diálogo.
+var APP_URL = 'https://TU-APP.netlify.app/';
 
 var SHEETS = {
   GASTOS: 'Gastos',
@@ -37,6 +42,139 @@ var DEFAULT_CONFIG = [
 ];
 
 var VOUCHER_FOLDER = 'Mis Gastos - Vouchers';
+
+/* ---------- Menú en la hoja ---------- */
+
+function onOpen() {
+  SpreadsheetApp.getUi().createMenu('💜 Mis Gastos')
+    .addItem('1. Instalar / reparar hojas', 'menuInstalar')
+    .addItem('2. Conectar mi celular (QR)', 'menuConectar')
+    .addToUi();
+}
+
+function menuInstalar() {
+  setup();
+  SpreadsheetApp.getUi().alert('Mis Gastos',
+    'Listo: hojas y categorías creadas.\n\nSiguiente paso: Implementar > Nueva implementación > Aplicación web ' +
+    '(Ejecutar como: Yo · Acceso: Cualquier usuario). Luego usa "2. Conectar mi celular".',
+    SpreadsheetApp.getUi().ButtonSet.OK);
+}
+
+function menuConectar() {
+  var html = HtmlService.createHtmlOutput(CONECTAR_HTML).setWidth(460).setHeight(620);
+  SpreadsheetApp.getUi().showModalDialog(html, 'Conectar mi celular');
+}
+
+/** Datos para el diálogo: URLs guardadas (o detectadas) y token. */
+function datosConexion() {
+  var props = PropertiesService.getScriptProperties();
+  var token = props.getProperty('API_TOKEN') || setup();
+  var detected = '';
+  try { detected = ScriptApp.getService().getUrl() || ''; } catch (e) { /* aún no implementado */ }
+  return {
+    appUrl: props.getProperty('APP_URL') || APP_URL,
+    execUrl: props.getProperty('WEBAPP_URL') || (/\/exec$/.test(detected) ? detected : ''),
+    token: token
+  };
+}
+
+/** Guarda las URLs y devuelve el enlace que conecta la app automáticamente. */
+function generarEnlace(appUrl, execUrl) {
+  appUrl = String(appUrl || '').trim();
+  execUrl = String(execUrl || '').trim();
+  if (!/^https:\/\//.test(appUrl) || /TU-APP/.test(appUrl)) throw new Error('Escribe la dirección de la app (https://…).');
+  if (!/^https:\/\/script\.google\.com\/.+\/exec$/.test(execUrl)) throw new Error('La URL de la aplicación web debe terminar en /exec.');
+  var props = PropertiesService.getScriptProperties();
+  props.setProperty('APP_URL', appUrl);
+  props.setProperty('WEBAPP_URL', execUrl);
+  var token = props.getProperty('API_TOKEN') || setup();
+  return appUrl.replace(/#.*$/, '') + '#conectar=' + encodeURIComponent(execUrl) + '&token=' + encodeURIComponent(token);
+}
+
+function enviarEnlacePorCorreo(link) {
+  var email = Session.getEffectiveUser().getEmail();
+  MailApp.sendEmail({
+    to: email,
+    subject: 'Tu enlace de Mis Gastos',
+    htmlBody: '<p>Abre este enlace <b>en tu celular</b> (en iPhone, con Safari) para conectar la app con tu Google Sheet:</p>' +
+      '<p><a href="' + link + '">Conectar Mis Gastos</a></p><p>No compartas este enlace: da acceso a tus gastos.</p>'
+  });
+  return email;
+}
+
+// Diálogo del QR. El QR se genera en el navegador: el token no sale de tu computadora.
+var CONECTAR_HTML = `<!doctype html>
+<html>
+<head>
+  <base target="_top">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; color: #2B2238; margin: 0; padding: 4px 6px; font-size: 14px; }
+    label { display: block; font-weight: bold; margin: 12px 0 4px; font-size: 13px; }
+    input { width: 100%; box-sizing: border-box; padding: 8px; border: 1px solid #cbbfe0; border-radius: 8px; font-size: 13px; }
+    .help { color: #7C7090; font-size: 12px; margin: 4px 0 0; }
+    button { background: #9B7BD4; color: #fff; border: 0; border-radius: 10px; padding: 10px 14px; font-weight: bold; cursor: pointer; margin-top: 14px; }
+    button.ghost { background: #EFE7FB; color: #2B2238; }
+    #qr { display: flex; justify-content: center; margin: 16px 0 8px; }
+    #result { display: none; text-align: center; }
+    .err { color: #C0395A; margin-top: 10px; }
+    .ok { color: #2E8B6A; }
+  </style>
+</head>
+<body>
+  <div id="form">
+    <label for="app">Dirección de la app</label>
+    <input id="app" placeholder="https://mis-gastos.netlify.app/">
+    <p class="help">Te la da quien administra la app.</p>
+    <label for="exec">URL de la aplicación web (termina en /exec)</label>
+    <input id="exec" placeholder="https://script.google.com/macros/s/…/exec">
+    <p class="help">Implementar &gt; Administrar implementaciones &gt; copia la URL.</p>
+    <button id="go">Generar código QR</button>
+    <p class="err" id="err"></p>
+  </div>
+  <div id="result">
+    <p><b>Escanea este código con la cámara de tu celular</b></p>
+    <div id="qr"></div>
+    <p class="help">Se abrirá la app ya conectada. En iPhone ábrelo con Safari y luego: Compartir &gt; Agregar a inicio.</p>
+    <button id="mail" class="ghost">Enviarme el enlace por correo</button>
+    <button id="copy" class="ghost">Copiar enlace</button>
+    <p class="help" id="msg"></p>
+    <p class="help"><b>No compartas este código:</b> da acceso a tus gastos.</p>
+  </div>
+  <script>
+    var link = '';
+    var $ = function (id) { return document.getElementById(id); };
+    google.script.run.withSuccessHandler(function (d) {
+      $('app').value = /TU-APP/.test(d.appUrl) ? '' : d.appUrl;
+      $('exec').value = d.execUrl;
+    }).datosConexion();
+    $('go').onclick = function () {
+      $('err').textContent = '';
+      google.script.run
+        .withSuccessHandler(function (l) {
+          link = l;
+          $('form').style.display = 'none';
+          $('result').style.display = 'block';
+          new QRCode($('qr'), { text: l, width: 260, height: 260, correctLevel: QRCode.CorrectLevel.M });
+        })
+        .withFailureHandler(function (e) { $('err').textContent = e.message; })
+        .generarEnlace($('app').value, $('exec').value);
+    };
+    $('mail').onclick = function () {
+      $('msg').textContent = 'Enviando…';
+      google.script.run
+        .withSuccessHandler(function (email) { $('msg').innerHTML = '<span class="ok">Enviado a ' + email + '. Ábrelo desde tu celular.</span>'; })
+        .withFailureHandler(function (e) { $('msg').textContent = e.message; })
+        .enviarEnlacePorCorreo(link);
+    };
+    $('copy').onclick = function () {
+      var ta = document.createElement('textarea');
+      ta.value = link; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove();
+      $('msg').textContent = 'Enlace copiado.';
+    };
+  </script>
+</body>
+</html>`;
 
 /* ---------- Instalación ---------- */
 
