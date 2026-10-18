@@ -40,14 +40,22 @@ class SheetsBackend {
 
   async call(action, payload = {}) {
     // text/plain evita el preflight CORS que Apps Script no soporta.
-    const res = await fetch(this.url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ token: this.token, action, ...payload }),
-      redirect: 'follow',
-    });
+    let res;
+    try {
+      res = await fetch(this.url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ token: this.token, action, ...payload }),
+        redirect: 'follow',
+      });
+    } catch {
+      // Safari dice "Load failed" y Chrome "Failed to fetch": casi siempre es el acceso de la implementación.
+      throw new Error('No se pudo conectar con tu hoja. En Apps Script revisa que la implementación tenga acceso "Cualquier usuario" y que la URL termine en /exec.');
+    }
     if (!res.ok) throw new Error(`Error de conexión (${res.status})`);
-    const json = await res.json();
+    const json = await res.json().catch(() => {
+      throw new Error('Google respondió con una página en vez de datos. Revisa el acceso "Cualquier usuario" de la implementación.');
+    });
     if (!json.ok) throw new Error(json.error || 'Error desconocido');
     return json.data;
   }
