@@ -257,6 +257,7 @@ button, input, select { font: inherit; color: inherit; }
 @keyframes up { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
 @media (min-width: 640px) { .sheet { margin: auto; border-radius: 28px; } }
 
+.confirm p { font-size: 16px; font-weight: 600; margin: 12px 0 0; }
 .amount-input { display: flex; align-items: baseline; gap: 8px; justify-content: center; padding: 10px 0; }
 .amount-input .cur { font-size: 22px; }
 .amount-input input { border: 0; background: transparent; font-family: 'Fraunces', Georgia, serif; font-size: 44px; font-weight: 600; width: 6.5ch; max-width: 240px; outline: none; color: var(--text); }

@@ -35,6 +35,21 @@ function toast(msg) {
   toast.timer = setTimeout(() => t.classList.remove('show'), 2600);
 }
 
+/** Confirmación dentro de la app (confirm() no funciona en todos los visores). */
+function askConfirm(message, okLabel = 'Aceptar') {
+  const dlg = $('#confirm-dialog');
+  $('#confirm-text').textContent = message;
+  $('#confirm-ok').textContent = okLabel;
+  dlg.returnValue = '';
+  dlg.showModal();
+  return new Promise((resolve) => {
+    dlg.addEventListener('close', () => resolve(dlg.returnValue === 'ok'), { once: true });
+  });
+}
+
+// Vista previa publicada sin backend real (ver scripts/vista-previa.py).
+const PREVIEW = window.MG_PREVIEW === true;
+
 async function withLoader(fn) {
   $('#loader').hidden = false;
   try { return await fn(); }
@@ -98,7 +113,9 @@ function render() {
 
   const banner = $('#banner');
   banner.hidden = !state.backend.isDemo;
-  banner.innerHTML = '🌱 Estás en <strong>modo demo</strong>. Conecta tu Google Sheet en <a href="#" data-goto="settings">Ajustes</a>.';
+  banner.innerHTML = PREVIEW
+    ? '👀 <strong>Vista de prueba</strong> con datos de ejemplo. Para usarla con tu Google Sheet, instala la app siguiendo el manual.'
+    : '🌱 Estás en <strong>modo demo</strong>. Conecta tu Google Sheet en <a href="#" data-goto="settings">Ajustes</a>.';
 
   const analysis = analyzeMonth(state.data, state.month);
   renderHome(analysis);
@@ -272,7 +289,8 @@ function renderSettings() {
   $('#set-name').value = state.data.config?.nombre || '';
   $('#set-currency').value = state.data.config?.moneda || 'S/';
   $('#demo-card').hidden = !state.backend.isDemo;
-  $('#conn-status').textContent = state.backend.isDemo ? '🌱 Modo demo activo' : '✅ Conectado a Google Sheets';
+  $('#conn-status').textContent = PREVIEW ? 'En la vista de prueba no se puede conectar una hoja.' : state.backend.isDemo ? '🌱 Modo demo activo' : '✅ Conectado a Google Sheets';
+  $('#save-settings').disabled = PREVIEW;
 }
 
 /* ---------- Navegación ---------- */
@@ -348,6 +366,7 @@ function setOcrStatus(text, cls = '') {
 async function scanReceipt() {
   const run = ++state.ocrRun;
   const form = $('#expense-form');
+  if (PREVIEW) { setOcrStatus('En la app instalada, aquí se leen el monto, la fecha y el comercio del voucher.'); return; }
   setOcrStatus('🔎 Leyendo voucher…', 'busy');
   try {
     const r = await readReceipt(`data:${state.photo.mimeType};base64,${state.photo.base64}`);
@@ -505,7 +524,7 @@ function bindEvents() {
 
   $('#expense-list').addEventListener('click', async (ev) => {
     const del = ev.target.closest('[data-del]');
-    if (!del || !confirm('¿Eliminar este gasto?')) return;
+    if (!del || !(await askConfirm('¿Eliminar este gasto?', 'Eliminar'))) return;
     const id = del.dataset.del;
     await withLoader(() => state.backend.deleteExpense(id)).then(() => {
       state.data.expenses = state.data.expenses.filter((e) => e.id !== id);
@@ -591,7 +610,7 @@ function bindEvents() {
       .then(() => { CURRENCY.symbol = state.data.config.moneda || 'S/'; render(); toast('Preferencias guardadas'); }).catch(() => {});
   });
   $('#reset-demo').addEventListener('click', async () => {
-    if (!state.backend.isDemo || !confirm('¿Reiniciar los datos de ejemplo?')) return;
+    if (!state.backend.isDemo || !(await askConfirm('¿Reiniciar los datos de ejemplo?', 'Reiniciar'))) return;
     state.backend.reset();
     await reload();
   });
