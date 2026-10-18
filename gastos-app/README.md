@@ -35,8 +35,8 @@ El manual para usuarias (paso a paso, con iPhone) está aparte; esto es el resum
 3. Escribe esa dirección en `APP_URL` al inicio de `instalador/Code.gs` y comparte ese archivo.
 
 **Cada persona (tiene su propia hoja y sus datos):**
-1. Google Sheet nueva → **Extensiones → Apps Script** → pega `Code.gs` → guarda → ejecuta `onOpen` una vez (acepta permisos).
-2. En la hoja: **💜 Mis Gastos → 1. Instalar / reparar hojas**.
+1. Google Sheet nueva → **Extensiones → Apps Script** → pega `Code.gs` → guarda → elige la función `setup` → **Ejecutar** (acepta permisos). Crea las hojas y el token.
+2. Recarga la hoja: aparece el menú **💜 Mis Gastos**.
 3. Apps Script: **Implementar → Nueva implementación → Aplicación web** (Ejecutar como: Yo · Acceso: Cualquier usuario).
 4. En la hoja: **💜 Mis Gastos → 2. Conectar mi celular (QR)** → pega la URL `/exec` → escanea el QR con el celular.
    El enlace (`APP_URL#conectar=<exec>&token=<token>`) configura la app y se borra de la barra de direcciones.
