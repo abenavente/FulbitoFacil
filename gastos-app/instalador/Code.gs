@@ -97,7 +97,10 @@ function enviarEnlacePorCorreo(link) {
     to: email,
     subject: 'Tu enlace de Mis Gastos',
     htmlBody: '<p>Abre este enlace <b>en tu celular</b> (en iPhone, con Safari) para conectar la app con tu Google Sheet:</p>' +
-      '<p><a href="' + link + '">Conectar Mis Gastos</a></p><p>No compartas este enlace: da acceso a tus gastos.</p>'
+      '<p><a href="' + link + '">Conectar Mis Gastos</a></p>' +
+      '<p>Si ya instalaste la app en tu pantalla de inicio y aparece en modo demo, copia este enlace completo y pégalo en Ajustes:</p>' +
+      '<p style="font-family:monospace;font-size:12px;word-break:break-all">' + link + '</p>' +
+      '<p>No compartas este enlace: da acceso a tus gastos.</p>'
   });
   return email;
 }

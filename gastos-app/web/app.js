@@ -558,8 +558,15 @@ function bindEvents() {
 
   // Ajustes
   $('#save-settings').addEventListener('click', async () => {
-    const url = $('#set-url').value.trim();
-    const token = $('#set-token').value.trim();
+    let url = $('#set-url').value.trim();
+    let token = $('#set-token').value.trim();
+    // También acepta el enlace de conexión completo (el del QR o del correo).
+    const hashAt = url.indexOf('#conectar=');
+    if (hashAt >= 0) {
+      const params = new URLSearchParams(url.slice(hashAt + 1));
+      url = params.get('conectar') || '';
+      token = params.get('token') || token;
+    }
     if (!/^https:\/\/script\.google\.com\/.+\/exec$/.test(url)) { toast('La URL debe terminar en /exec'); return; }
     try {
       const res = await withLoader(() => testConnection(url, token));
