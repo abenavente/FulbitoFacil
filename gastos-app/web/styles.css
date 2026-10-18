@@ -264,8 +264,15 @@ button, input, select { font: inherit; color: inherit; }
 .cat-chip { border: 1.5px solid var(--border); background: transparent; border-radius: 999px; padding: 7px 12px; font-size: 13px; font-weight: 600; cursor: pointer; }
 .cat-chip.active { border-color: var(--cat); background: color-mix(in srgb, var(--cat) 20%, transparent); }
 .photo-drop { display: grid; place-items: center; min-height: 92px; border: 1.5px dashed color-mix(in srgb, var(--primary) 50%, transparent); border-radius: 18px; cursor: pointer; color: var(--muted); font-size: 14px; font-weight: 600; overflow: hidden; background: var(--track); }
-.photo-drop img { width: 100%; max-height: 220px; object-fit: cover; }
+.photo-drop img { width: 100%; max-height: 260px; object-fit: contain; }
+.amount-input input::-webkit-inner-spin-button, .amount-input input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.amount-input input { -moz-appearance: textfield; appearance: textfield; }
 #photo-clear { margin-top: 8px; }
+.ocr-status { margin: 8px 0 0; color: var(--muted); }
+.ocr-status:empty { display: none; }
+.ocr-status.ok { color: var(--ok); font-weight: 600; }
+.ocr-status.busy { animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 50% { opacity: .45; } }
 .budget-hint { margin: 12px 0 0; padding: 10px 12px; border-radius: 12px; background: var(--track); }
 .budget-hint:empty { display: none; }
 .budget-hint.over { background: color-mix(in srgb, var(--danger) 15%, transparent); color: var(--danger); font-weight: 600; }

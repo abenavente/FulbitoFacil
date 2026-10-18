@@ -5,6 +5,7 @@ App web (PWA, se instala en el celular como una app) para administrar gastos per
 - Categorías: Comida, Transporte, Salud, Deporte, Ropa, Maquillaje, Social, Suscripciones y Ahorros — y se pueden **agregar, editar o archivar** más.
 - **Tope mensual** general + **meta mensual por categoría**.
 - 📷 **Foto del voucher**: se comprime en el celular, se guarda en Google Drive (carpeta *Mis Gastos - Vouchers*) y el link queda en la hoja.
+- ✨ **Lectura automática del voucher**: al tomar la foto, la app lee el **monto total, la fecha y el comercio** y completa el formulario (solo los campos vacíos; siempre se puede corregir). El reconocimiento corre en el propio celular con [Tesseract.js](https://tesseract.projectnaptha.com/), sin costo; la primera vez descarga ~4 MB del modelo en español.
 - **Tablero**: % del tope usado, proyección a fin de mes, cuánto puedes gastar por día, progreso por categoría, distribución y tendencia de 6 meses.
 - **Excesos y alertas**: categorías excedidas, en riesgo (por el ritmo de gasto) y tope superado.
 - **Recomendaciones**: si te excedes en una categoría, la app reparte ese exceso entre las categorías que aún tienen holgura y te dice cuánto recortar en cada una (nunca en categorías marcadas como 🛡️ *protegidas*, p. ej. Salud o Ahorros). También avisa si una meta se excede seguido, si tus metas suman más que el tope, cuánto te falta para la meta de ahorro y qué categoría subió más vs tus últimos 3 meses.
@@ -20,7 +21,7 @@ gastos-app/
 │   ├── Code.gs
 │   └── appsscript.json
 ├── web/           La app (HTML/CSS/JS sin dependencias ni build)
-└── tests/         Tests del motor de recomendaciones
+└── tests/         Tests del motor de recomendaciones y del lector de vouchers
 ```
 
 ## 1. Preparar la Google Sheet (5 minutos)
@@ -67,5 +68,5 @@ Las categorías archivadas no se borran, para no perder el historial.
 
 ```bash
 npm start   # sirve web/ en http://localhost:5173
-npm test    # tests del motor de análisis (Node 18+)
+npm test    # tests del análisis y del lector de vouchers (Node 18+)
 ```

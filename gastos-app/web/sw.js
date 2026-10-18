@@ -1,7 +1,7 @@
 // Cache del "cascarón" de la app para que abra rápido y sin conexión.
 // Los datos siempre se piden en vivo a Google Sheets.
-const CACHE = 'misgastos-v1';
-const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'api.js', 'insights.js', 'manifest.webmanifest', 'icon.svg'];
+const CACHE = 'misgastos-v2';
+const SHELL = ['./', 'index.html', 'styles.css', 'app.js', 'api.js', 'insights.js', 'receipt.js', 'manifest.webmanifest', 'icon.svg'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));

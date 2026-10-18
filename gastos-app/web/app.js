@@ -1,5 +1,6 @@
 import { createBackend, loadSettings, saveSettings, testConnection } from './api.js';
 import { analyzeMonth, monthlyTrend, monthKey, shiftMonth, CURRENCY } from './insights.js';
+import { readReceipt } from './receipt.js';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
@@ -21,6 +22,7 @@ const state = {
   photo: null,
   selectedCat: null,
   editingCat: null,
+  ocrRun: 0,
 };
 
 /* ---------- Utilidades UI ---------- */
@@ -307,12 +309,40 @@ function updateBudgetHint() {
 }
 
 function updatePhotoPreview() {
+  if (!state.photo) { state.ocrRun++; setOcrStatus(''); }
   const img = $('#photo-preview');
   img.hidden = !state.photo;
   $('#photo-hint').hidden = !!state.photo;
   $('#photo-clear').hidden = !state.photo;
   if (state.photo) img.src = `data:${state.photo.mimeType};base64,${state.photo.base64}`;
   else img.removeAttribute('src');
+}
+
+function setOcrStatus(text, cls = '') {
+  const el = $('#ocr-status');
+  el.textContent = text;
+  el.className = `ocr-status small ${cls}`;
+}
+
+/** Lee el voucher y completa solo los campos que siguen vacíos. */
+async function scanReceipt() {
+  const run = ++state.ocrRun;
+  const form = $('#expense-form');
+  setOcrStatus('🔎 Leyendo voucher…', 'busy');
+  try {
+    const r = await readReceipt(`data:${state.photo.mimeType};base64,${state.photo.base64}`);
+    if (run !== state.ocrRun || !$('#expense-dialog').open) return;
+    const found = [];
+    if (r.amount && !form.amount.value) { form.amount.value = r.amount.toFixed(2); found.push(`${CURRENCY.symbol} ${r.amount.toFixed(2)}`); }
+    if (r.date) { form.date.value = r.date; found.push(r.date.split('-').reverse().join('/')); }
+    if (r.merchant && !form.description.value) { form.description.value = r.merchant; found.push(r.merchant); }
+    updateBudgetHint();
+    setOcrStatus(found.length
+      ? `✨ Detectado: ${found.join(' · ')}. Revisa que esté bien.`
+      : (r.amount ? `✨ Monto en el voucher: ${CURRENCY.symbol} ${r.amount.toFixed(2)}` : 'No pude leer el monto; ingrésalo a mano.'), found.length ? 'ok' : '');
+  } catch {
+    if (run === state.ocrRun) setOcrStatus('No pude leer el voucher (¿sin conexión?). La foto igual se guardará.');
+  }
 }
 
 /** Reduce la foto antes de subirla: los vouchers no necesitan 12 MP. */
@@ -483,6 +513,7 @@ function bindEvents() {
     try {
       state.photo = await compressImage(file);
       updatePhotoPreview();
+      scanReceipt();
     } catch (err) {
       toast(`⚠️ ${err.message}`);
     }
