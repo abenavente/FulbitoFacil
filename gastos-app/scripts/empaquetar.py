@@ -9,4 +9,5 @@ with zipfile.ZipFile(out / 'mis-gastos-web.zip', 'w', zipfile.ZIP_DEFLATED) as z
         if f.is_file():
             z.write(f, f.name)
 shutil.copy(root / 'apps-script' / 'Code.gs', out / 'Code.gs')
+shutil.copy(root / 'apps-script' / 'Code.gs', out / 'Code.txt')  # se abre con doble clic en cualquier equipo
 print('Listo:', *(p.name for p in sorted(out.iterdir())))
