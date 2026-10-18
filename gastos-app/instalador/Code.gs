@@ -11,7 +11,7 @@
 
 // Dirección donde está publicada la app. Quien administra la app la escribe aquí
 // una vez antes de compartir este código; cada persona también puede cambiarla en el diálogo.
-var APP_URL = 'https://TU-APP.netlify.app/';
+var APP_URL = 'https://steady-elf-135d2d.netlify.app/';
 
 var SHEETS = {
   GASTOS: 'Gastos',
