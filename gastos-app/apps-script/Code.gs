@@ -260,24 +260,53 @@ function buildResumen_(ss) {
 
 /* ---------- API web ---------- */
 
+// La app llama por GET con ?p=<json>&callback=<fn> (JSONP): así funciona en Safari,
+// que bloquea las respuestas de fetch() que Apps Script entrega tras una redirección.
 function doGet(e) {
-  return handle_(e && e.parameter ? e.parameter : {});
+  var params = e && e.parameter ? e.parameter : {};
+  var req = params;
+  if (params.p) {
+    try {
+      req = JSON.parse(params.p);
+    } catch (err) {
+      return output_({ ok: false, error: 'JSON inválido' }, params.callback);
+    }
+  }
+  return output_(handle_(req), params.callback);
 }
 
+// Las fotos llegan por POST (no-cors: la app no lee esta respuesta, luego confirma por GET).
 function doPost(e) {
   var body = {};
   try {
     body = JSON.parse(e.postData.contents || '{}');
   } catch (err) {
-    return json_({ ok: false, error: 'JSON inválido' });
+    return output_({ ok: false, error: 'JSON inválido' });
   }
-  return handle_(body);
+  return output_(handle_(body));
+}
+
+function output_(obj, callback) {
+  if (callback && /^[A-Za-z_$][\w$.]{0,80}$/.test(callback)) {
+    return ContentService.createTextOutput(callback + '(' + JSON.stringify(obj) + ');')
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return json_(obj);
 }
 
 function handle_(req) {
   var token = PropertiesService.getScriptProperties().getProperty('API_TOKEN');
   if (!token || req.token !== token) {
-    return json_({ ok: false, error: 'Token inválido. Revisa Ajustes en la app.' });
+    return { ok: false, error: 'Token inválido. Revisa Ajustes en la app.' };
+  }
+
+  // Las partes de una foto solo van a la caché: no necesitan el candado de la hoja.
+  if (req.action === 'stashUpload') {
+    try {
+      return { ok: true, data: stashUpload_(req.uploadId, req.index, req.total, req.data) };
+    } catch (err) {
+      return { ok: false, error: String(err && err.message || err) };
+    }
   }
 
   var lock = LockService.getScriptLock();
@@ -293,14 +322,58 @@ function handle_(req) {
       case 'saveCategory': data = saveCategory_(ss, req.category || {}, req.originalName); break;
       case 'deleteCategory': data = deleteCategory_(ss, req.name); break;
       case 'saveConfig': data = saveConfig_(ss, req.config || {}); break;
-      default: return json_({ ok: false, error: 'Acción desconocida: ' + req.action });
+      default: return { ok: false, error: 'Acción desconocida: ' + req.action };
     }
-    return json_({ ok: true, data: data });
+    return { ok: true, data: data };
   } catch (err) {
-    return json_({ ok: false, error: String(err && err.message || err) });
+    return { ok: false, error: String(err && err.message || err), code: err && err.code };
   } finally {
     lock.releaseLock();
   }
+}
+
+/* ---------- Subida de fotos por partes (caché de 6 horas) ---------- */
+
+var CACHE_PIECE = 90000; // la caché acepta hasta 100 KB por valor
+
+/**
+ * Guarda la foto (o una parte de ella) en la caché.
+ * Sin `index`: la foto completa (POST). Con `index`/`total`: una parte (GET).
+ */
+function stashUpload_(uploadId, index, total, data) {
+  if (!/^[\w-]{6,40}$/.test(String(uploadId || ''))) throw new Error('Subida inválida');
+  data = String(data || '');
+  var cache = CacheService.getScriptCache();
+  var prefix = 'up_' + uploadId + '_';
+  var values = {};
+  if (index === undefined || index === null) {
+    var n = Math.ceil(data.length / CACHE_PIECE) || 1;
+    for (var i = 0; i < n; i++) values[prefix + i] = data.slice(i * CACHE_PIECE, (i + 1) * CACHE_PIECE);
+    values[prefix + 'n'] = String(n);
+  } else {
+    if (data.length > CACHE_PIECE) throw new Error('Parte demasiado grande');
+    values[prefix + Number(index)] = data;
+    values[prefix + 'n'] = String(Number(total));
+  }
+  cache.putAll(values, 21600);
+  return { uploadId: uploadId };
+}
+
+function takeUpload_(uploadId) {
+  var cache = CacheService.getScriptCache();
+  var prefix = 'up_' + uploadId + '_';
+  var n = Number(cache.get(prefix + 'n'));
+  var keys = [];
+  for (var i = 0; i < n; i++) keys.push(prefix + i);
+  var got = n ? cache.getAll(keys) : {};
+  var parts = keys.map(function (k) { return got[k]; });
+  if (!n || parts.some(function (x) { return x === undefined || x === null; })) {
+    var err = new Error('La foto no llegó completa');
+    err.code = 'UPLOAD_MISSING';
+    throw err;
+  }
+  cache.removeAll(keys.concat([prefix + 'n']));
+  return parts.join('');
 }
 
 function json_(obj) {
@@ -373,15 +446,20 @@ function addExpense_(ss, exp, photo) {
   if (!exp.category) throw new Error('Falta la categoría');
   if (!/^\d{4}-\d{2}-\d{2}$/.test(exp.date || '')) throw new Error('Fecha inválida');
 
-  var id = Utilities.getUuid().slice(0, 8);
+  var sheet = ss.getSheetByName(SHEETS.GASTOS);
+  // La app manda su propio id: si es un reintento de un gasto ya guardado, no se duplica.
+  var id = /^[\w-]{6,40}$/.test(String(exp.id || '')) ? String(exp.id) : Utilities.getUuid().slice(0, 8);
+  if (exp.id && findRow_(sheet, 1, id)) {
+    return readExpenses_(ss).filter(function (x) { return x.id === id; })[0];
+  }
   var voucherUrl = '';
+  if (photo && photo.uploadId) photo.base64 = takeUpload_(photo.uploadId);
   if (photo && photo.base64) {
     voucherUrl = saveVoucher_(photo, exp.date + '_' + exp.category + '_' + id);
   }
 
   var parts = exp.date.split('-');
   var date = new Date(Number(parts[0]), Number(parts[1]) - 1, Number(parts[2]));
-  var sheet = ss.getSheetByName(SHEETS.GASTOS);
   sheet.appendRow([id, date, amount, exp.category, exp.description || '', exp.payment || '', voucherUrl, new Date()]);
 
   return { id: id, date: exp.date, amount: amount, category: exp.category,

@@ -385,7 +385,7 @@ async function scanReceipt() {
 }
 
 /** Reduce la foto antes de subirla: los vouchers no necesitan 12 MP. */
-async function compressImage(file, maxSide = 1400, quality = 0.72) {
+async function compressImage(file, maxSide = 1200, quality = 0.7) {
   const bitmap = await createImageBitmap(file).catch(() => null);
   const src = bitmap || await new Promise((res, rej) => {
     const img = new Image();
@@ -427,7 +427,7 @@ async function submitExpense(ev) {
         ? { mimeType: state.photo.mimeType, base64: state.photo.thumb }
         : { mimeType: state.photo.mimeType, base64: state.photo.base64, name: state.photo.name };
     }
-    const saved = await state.backend.addExpense(expense, photo);
+    const saved = await state.backend.addExpense(expense, photo, (f) => { btn.textContent = `Subiendo voucher ${Math.round(f * 100)}%`; });
     state.data.expenses.push(saved);
     $('#expense-dialog').close();
     state.month = expense.date.slice(0, 7);
