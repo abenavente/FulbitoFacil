@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Mis Gastos</title>
+  <meta name="theme-color" content="#F7F1FB" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#17141F" media="(prefers-color-scheme: dark)" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="blob blob-a" aria-hidden="true"></div>
+  <div class="blob blob-b" aria-hidden="true"></div>
+
+  <main class="app">
+    <header class="topbar">
+      <div>
+        <p class="hello" id="hello">Hola ✨</p>
+        <h1 class="title" id="view-title">Tu mes</h1>
+      </div>
+      <div class="month-picker" id="month-picker">
+        <button class="icon-btn" data-month="-1" aria-label="Mes anterior">‹</button>
+        <span id="month-label">—</span>
+        <button class="icon-btn" data-month="1" aria-label="Mes siguiente">›</button>
+      </div>
+    </header>
+
+    <div id="banner" class="banner" hidden></div>
+
+    <!-- INICIO / TABLERO -->
+    <section class="view" id="view-home">
+      <article class="card hero">
+        <div class="ring-wrap">
+          <svg viewBox="0 0 120 120" class="ring" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" class="ring-track" />
+            <circle cx="60" cy="60" r="52" class="ring-bar" id="hero-ring" />
+          </svg>
+          <div class="ring-center">
+            <span class="ring-pct" id="hero-pct">0%</span>
+            <span class="ring-sub">del tope</span>
+          </div>
+        </div>
+        <div class="hero-info">
+          <p class="muted">Gastado este mes</p>
+          <p class="big" id="hero-spent">S/ 0</p>
+          <p class="muted small">de <strong id="hero-tope">S/ 0</strong> de tope</p>
+          <div class="hero-chips">
+            <span class="chip soft" id="hero-left">—</span>
+            <span class="chip soft" id="hero-daily">—</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="stats">
+        <article class="card stat"><p class="muted small">Proyección fin de mes</p><p class="stat-v" id="stat-proj">—</p></article>
+        <article class="card stat"><p class="muted small">Ahorrado</p><p class="stat-v" id="stat-saved">—</p><div class="mini-bar"><span id="stat-saved-bar"></span></div></article>
+      </div>
+
+      <h2 class="section-title" id="alerts-title">Excesos y alertas</h2>
+      <div id="alerts" class="stack"></div>
+
+      <h2 class="section-title">Recomendaciones</h2>
+      <div id="recs" class="stack"></div>
+
+      <h2 class="section-title">Por categoría</h2>
+      <article class="card" id="cat-progress"></article>
+
+      <h2 class="section-title">Distribución</h2>
+      <article class="card donut-card">
+        <svg viewBox="0 0 42 42" class="donut" id="donut" role="img" aria-label="Distribución de gastos por categoría"></svg>
+        <ul class="legend" id="donut-legend"></ul>
+      </article>
+
+      <h2 class="section-title">Últimos 6 meses</h2>
+      <article class="card"><div class="trend" id="trend"></div></article>
+    </section>
+
+    <!-- GASTOS -->
+    <section class="view" id="view-expenses" hidden>
+      <div class="filters" id="expense-filters"></div>
+      <div id="expense-list" class="stack"></div>
+    </section>
+
+    <!-- CATEGORÍAS Y METAS -->
+    <section class="view" id="view-categories" hidden>
+      <article class="card">
+        <label class="field">
+          <span>Tope mensual de gastos</span>
+          <div class="money-input"><span class="cur"></span><input type="number" inputmode="decimal" min="0" step="1" id="tope-input" /></div>
+        </label>
+        <p class="muted small" id="budget-sum" style="margin-bottom:12px">—</p>
+        <button class="btn primary" id="save-tope">Guardar tope</button>
+      </article>
+      <div class="row-between">
+        <h2 class="section-title">Metas por categoría</h2>
+        <button class="btn ghost small" id="add-category">+ Nueva</button>
+      </div>
+      <div id="category-list" class="stack"></div>
+    </section>
+
+    <!-- AJUSTES -->
+    <section class="view" id="view-settings" hidden>
+      <article class="card">
+        <h3>Conexión con Google Sheets</h3>
+        <p class="muted small">Pega aquí el enlace de conexión completo (el del correo) o la URL de Apps Script y el token. Sin esto la app funciona en <strong>modo demo</strong> guardando en este dispositivo.</p>
+        <label class="field"><span>Enlace de conexión o URL de Apps Script</span><input type="url" id="set-url" placeholder="https://…#conectar=… o https://script.google.com/…/exec" /></label>
+        <label class="field"><span>Token</span><input type="text" id="set-token" autocomplete="off" /></label>
+        <div class="btn-row">
+          <button class="btn primary" id="save-settings">Conectar</button>
+          <button class="btn ghost" id="disconnect">Usar modo demo</button>
+        </div>
+        <p class="small" id="conn-status"></p>
+      </article>
+      <article class="card">
+        <h3>Preferencias</h3>
+        <label class="field"><span>Tu nombre</span><input type="text" id="set-name" placeholder="Ej. Valeria" /></label>
+        <label class="field"><span>Moneda</span><input type="text" id="set-currency" maxlength="4" placeholder="S/" /></label>
+        <button class="btn primary" id="save-prefs">Guardar</button>
+      </article>
+      <article class="card" id="demo-card">
+        <h3>Modo demo</h3>
+        <p class="muted small">Restablece los datos de ejemplo.</p>
+        <button class="btn ghost" id="reset-demo">Reiniciar demo</button>
+      </article>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Navegación">
+    <button class="tab active" data-view="home"><span>🏠</span>Inicio</button>
+    <button class="tab" data-view="expenses"><span>🧾</span>Gastos</button>
+    <button class="fab" id="fab" aria-label="Agregar gasto">+</button>
+    <button class="tab" data-view="categories"><span>🎯</span>Metas</button>
+    <button class="tab" data-view="settings"><span>⚙️</span>Ajustes</button>
+  </nav>
+
+  <!-- MODAL: NUEVO GASTO -->
+  <dialog id="expense-dialog" class="sheet">
+    <form method="dialog" id="expense-form">
+      <div class="sheet-handle"></div>
+      <h2>Nuevo gasto</h2>
+      <div class="amount-input">
+        <span class="cur"></span>
+        <input type="number" inputmode="decimal" step="0.01" min="0.01" name="amount" placeholder="0.00" required />
+      </div>
+      <p class="label">Categoría</p>
+      <div class="cat-chips" id="cat-chips"></div>
+      <div class="grid-2">
+        <label class="field"><span>Fecha</span><input type="date" name="date" required /></label>
+        <label class="field"><span>Pago</span>
+          <select name="payment">
+            <option>Tarjeta</option><option>Efectivo</option><option>Yape/Plin</option><option>Transferencia</option>
+          </select>
+        </label>
+      </div>
+      <label class="field"><span>Descripción</span><input type="text" name="description" placeholder="Ej. Almuerzo, taxi, labial…" maxlength="120" /></label>
+
+      <p class="label">Voucher</p>
+      <label class="photo-drop" id="photo-drop">
+        <input type="file" accept="image/*" capture="environment" id="photo-input" hidden />
+        <img id="photo-preview" alt="Vista previa del voucher" hidden />
+        <span id="photo-hint">📷 Tomar foto o subir voucher</span>
+      </label>
+      <button type="button" class="btn ghost small" id="photo-clear" hidden>Quitar foto</button>
+      <p class="ocr-status small" id="ocr-status" aria-live="polite"></p>
+
+      <p class="budget-hint small" id="budget-hint"></p>
+
+      <div class="btn-row">
+        <button type="button" class="btn ghost" value="cancel" id="expense-cancel">Cancelar</button>
+        <button type="submit" class="btn primary" id="expense-save">Guardar gasto</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- MODAL: CATEGORÍA -->
+  <dialog id="category-dialog" class="sheet">
+    <form method="dialog" id="category-form">
+      <div class="sheet-handle"></div>
+      <h2 id="category-dialog-title">Categoría</h2>
+      <div class="grid-2 emoji-row">
+        <label class="field"><span>Emoji</span><input type="text" name="emoji" maxlength="4" required /></label>
+        <label class="field"><span>Color</span><input type="color" name="color" /></label>
+      </div>
+      <label class="field"><span>Nombre</span><input type="text" name="name" required maxlength="30" /></label>
+      <label class="field"><span>Meta / presupuesto mensual</span>
+        <div class="money-input"><span class="cur"></span><input type="number" inputmode="decimal" min="0" step="1" name="budget" required /></div>
+      </label>
+      <label class="field"><span>Tipo</span>
+        <select name="type">
+          <option value="gasto">Gasto (cuenta para el tope)</option>
+          <option value="ahorro">Ahorro (meta a alcanzar)</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" name="protected" /> Protegida: no recomendar recortes aquí</label>
+      <div class="btn-row">
+        <button type="button" class="btn danger ghost" id="category-delete">Archivar</button>
+        <button type="button" class="btn ghost" id="category-cancel">Cancelar</button>
+        <button type="submit" class="btn primary">Guardar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="confirm-dialog" class="sheet confirm">
+    <form method="dialog">
+      <div class="sheet-handle"></div>
+      <p id="confirm-text"></p>
+      <div class="btn-row">
+        <button class="btn ghost" value="cancel">Cancelar</button>
+        <button class="btn primary" value="ok" id="confirm-ok">Aceptar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="loader" class="loader" hidden><div class="spinner"></div></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
